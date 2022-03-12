@@ -14,7 +14,7 @@ public class MyFolder {
 	 public MyFolder(){}
 
 	 /**
-	  *
+	  * this method creates a directory for the given path
 	  * @param folderpath the path of the directory
 	  * @return boolean value to indicate whether it was created of already exists
 	  */
