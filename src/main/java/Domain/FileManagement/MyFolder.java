@@ -42,7 +42,7 @@ public class MyFolder {
 	 	 String filedir = directory + filename;
 	 	 boolean wascreated = false;
 		  try {
-		  	 if(!new File(filedir).exists()) {
+		  	 if(!Files.exists(Paths.get(filedir))) {
 				  Files.createFile(Paths.get(filedir));
 				  wascreated = true;
 			 }
@@ -73,7 +73,7 @@ public class MyFolder {
 	 }
 
 	 /**
-	  * Given the directory containing files, this method will return a list of string where the names of those files are
+	  * Given the directory containing the files, this method will return a list of strings of names
 	  * @return A list of Names of the files in the folder passed through the path
 	  */
 	 public List<String> getFileList(String folderpath) {
