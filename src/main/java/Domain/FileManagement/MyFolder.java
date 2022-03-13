@@ -1,5 +1,6 @@
 package Domain.FileManagement;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -90,5 +91,42 @@ public class MyFolder {
 			   }
 		  }
 		return folder_content_files_name;
+	 }
+
+	 /**
+	  *  this method adds the location by reference to the array of strings
+	  * @param path the path that is going to be indexed
+	  * @param array the array where you want the information to be storaged
+	  */
+	 public void getFilesPathList(String path, List<String> array) {
+		  File root = new File( path );
+		  File[] list = root.listFiles();
+		  if (list == null) return;
+		  for ( File f : list ) {
+			   if ( f.isDirectory()) {
+					getFilesPathList( f.getAbsolutePath(), array);
+			   }
+			   else {
+					array.add(f.getAbsoluteFile().getAbsolutePath());
+			   }
+		  }
+	 }
+
+	 /**
+	  *  this static method returns a list of the drive roots of the computer
+	  * @return a list of roots are in form of a file[]
+	  */
+	 public static File[] getDriveRoots(){
+	 	 return File.listRoots();
+	 }
+
+	 /**
+	  *  this method return the type of the drive passed as a file. in form disk, cd drive, etc
+	  * @param rootdrive the drive which we want to know what type is
+	  * @return a String where the type of the drive is indicated
+	  */
+	 public static String getDriveType (File rootdrive){
+		  FileSystemView fsv = FileSystemView.getFileSystemView();
+		  return fsv.getSystemTypeDescription(rootdrive);
 	 }
 }
