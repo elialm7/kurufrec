@@ -1,86 +1,36 @@
 package Domain.DTO.ConfigurationEntity;
 
-import java.io.File;
-import java.util.Objects;
+
+
 
 public class Configuration{
-	 private String disk = "C:";
-	 private String parent_path = disk + File.separator + "kuru_indexer"+File.separator;
-	 private String ddbb_path = parent_path + "ddbb" + File.separator;
-	 private String watchable_folder = "";
-	 private String files_copy_folder_path = parent_path + "files_backup" + File.separator;
-	 private String file_configuration_path = parent_path + "conf"+ File.pathSeparator;
-	 private String ddbb_file = "kuru_ddbb.db";
-	 private String conf_file = "conf.properties";
+
+	 public static String FULL_CONF_LOCATION = "kuru_indexer\\conf\\conf.properties";
+	 public static String DIR_CONF_LOCATION = "kuru_indexer\\conf";
+	 private String monitored_location = "";
+	 private String full_db_location = "kuru_indexer\\bbdd\\ddbb.db";
+	 private String dir_db_location = "kuru_indexer\\bbdd";
 	 private String first_time_running = "true";
 	 private String jar_location = "";
+	 private String Lang = "en";
 
 	 public Configuration(){}
 
 
-
-	 public String getDisk() {
-		  return disk;
+	 public String getFull_db_location() {
+		  return full_db_location;
 	 }
 
-	 public void setDisk(String disk) {
-		  this.disk = disk;
+	 public void setFull_db_location(String full_db_location) {
+		  this.full_db_location = full_db_location;
 	 }
 
-	 public String getParent_path() {
-		  return parent_path;
+	 public String getDir_db_location() {
+		  return dir_db_location;
 	 }
 
-	 public void setParent_path(String parent_path) {
-		  this.parent_path = parent_path;
-	 }
-
-	 public String getDdbb_path() {
-		  return ddbb_path;
-	 }
-
-	 public void setDdbb_path(String ddbb_path) {
-		  this.ddbb_path = ddbb_path;
-	 }
-
-	 public String getWatchable_folder() {
-		  return watchable_folder;
-	 }
-
-	 public void setWatchable_folder(String watchable_folder) {
-		  this.watchable_folder = watchable_folder;
-	 }
-
-	 public String getFiles_copy_folder_path() {
-		  return files_copy_folder_path;
-	 }
-
-	 public void setFiles_copy_folder_path(String files_copy_folder_path) {
-		  this.files_copy_folder_path = files_copy_folder_path;
-	 }
-
-	 public String getFile_configuration_path() {
-		  return file_configuration_path;
-	 }
-
-	 public void setFile_configuration_path(String file_configuration_path) {
-		  this.file_configuration_path = file_configuration_path;
-	 }
-
-	 public String getDdbb_file() {
-		  return ddbb_file;
-	 }
-
-	 public void setDdbb_file(String ddbb_file) {
-		  this.ddbb_file = ddbb_file;
-	 }
-
-	 public String getConf_file() {
-		  return conf_file;
-	 }
-
-	 public void setConf_file(String conf_file) {
-		  this.conf_file = conf_file;
+	 public void setDir_db_location(String dir_db_location) {
+		  this.dir_db_location = dir_db_location;
 	 }
 
 	 public String getFirst_time_running() {
@@ -99,26 +49,19 @@ public class Configuration{
 		  this.jar_location = jar_location;
 	 }
 
-	 @Override
-	 public boolean equals(Object o) {
-		  if (this == o) return true;
-		  if (o == null || getClass() != o.getClass()) return false;
-		  Configuration that = (Configuration) o;
-		  return Objects.equals(disk, that.disk) &&
-				  Objects.equals(parent_path, that.parent_path) &&
-				  Objects.equals(ddbb_path, that.ddbb_path) &&
-				  Objects.equals(watchable_folder, that.watchable_folder) &&
-				  Objects.equals(files_copy_folder_path, that.files_copy_folder_path) &&
-				  Objects.equals(file_configuration_path, that.file_configuration_path) &&
-				  Objects.equals(ddbb_file, that.ddbb_file) &&
-				  Objects.equals(conf_file, that.conf_file) &&
-				  Objects.equals(first_time_running, that.first_time_running);
+	 public void setLang(String lang) {
+		  Lang = lang;
 	 }
 
-	 @Override
-	 public int hashCode() {
+	 public String getLang() {
+		  return Lang;
+	 }
 
-		  return Objects.hash(disk, parent_path, ddbb_path, watchable_folder, files_copy_folder_path, file_configuration_path,
-				  ddbb_file, conf_file, first_time_running);
+	 public String getMonitored_location() {
+		  return monitored_location;
+	 }
+
+	 public void setMonitored_location(String monitored_location) {
+		  this.monitored_location = monitored_location;
 	 }
 }
