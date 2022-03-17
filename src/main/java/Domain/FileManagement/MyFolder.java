@@ -3,59 +3,26 @@ package Domain.FileManagement;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.nio.file.StandardCopyOption.*;
 
+/**
+ * This class consists of methods that works with directories according to the needs of the project.
+ */
 public class MyFolder {
+
+	 private String jar_folder;
 
 	 public MyFolder(){}
 
 	 /**
-	  * this method creates a directory for the given path
-	  * @param folderpath the path of the directory
-	  * @return boolean value to indicate whether it was created of already exists
-	  */
-	 public boolean create_directory(String folderpath){
-	 	 boolean wascreated = false;
-		  try {
-		  	 if(!Files.exists(Paths.get(folderpath))) {
-				  Files.createDirectories(Paths.get(folderpath));
-				  wascreated = true;
-			 }
-		  } catch (IOException e) {
-		  	 //logging must go here
-			   e.printStackTrace();
-		  }
-		  return wascreated;
-	 }
-
-	 /**
-	  * This method given its parameters will create a file where it is indicated.
-	  * @param directory the directory where the file is gonna be created.
-	  * @param filename the name of the file that's gonna be created
-	  * @return a boolean indicating if the creation of the file was a succes(true) or not (false)
-	  */
-	 public boolean create_file(String directory, String filename){
-	 	 String filedir = directory + filename;
-	 	 boolean wascreated = false;
-		  try {
-		  	 if(!Files.exists(Paths.get(filedir))) {
-				  Files.createFile(Paths.get(filedir));
-				  wascreated = true;
-			 }
-		  } catch (IOException e) {
-		  	 //logging must go here
-			   e.printStackTrace();
-		  }
-		  return wascreated;
-	 }
-
-	 /**
-	  * this method copies file from one place or another. it is a synchronyzed method if it is called from different threads
+	  * this method copies file from one place to another. it is a synchronyzed method in case it is called from different threads
 	  * from the same instance.
 	  * @param file_path the origin of the file containing the file already
 	  * @param copy_location the final location where the file is gonna be copied
@@ -74,7 +41,7 @@ public class MyFolder {
 	 }
 
 	 /**
-	  * Given the directory containing the files, this method will return a list of strings of names
+	  * This method will return a List of String of the file names that is contained in the directory given through the parameter.
 	  * @return A list of Names of the files in the folder passed through the path
 	  */
 	 public List<String> getFileList(String folderpath) {
@@ -94,9 +61,9 @@ public class MyFolder {
 	 }
 
 	 /**
-	  *  this method adds the location by reference to the array of strings
+	  * This method loads the absolute path of the files into a List of Strings that is passed as a parameter.
 	  * @param path the path that is going to be indexed
-	  * @param array the array where you want the information to be storaged
+	  * @param array the array list of String where that paths indexed is gonna be added.
 	  */
 	 public void getFilesPathList(String path, List<String> array) {
 		  File root = new File( path );
@@ -104,6 +71,7 @@ public class MyFolder {
 		  if (list == null) return;
 		  for ( File f : list ) {
 			   if ( f.isDirectory()) {
+			   	    //recursive call
 					getFilesPathList( f.getAbsolutePath(), array);
 			   }
 			   else {
@@ -113,12 +81,45 @@ public class MyFolder {
 	 }
 
 	 /**
-	  *  this static method returns a list of the drive roots of the computer
+	  * This method loads the sourcecode location and then gets its path to figure out the
+	  * jar location and loads that location into the jar_jalder field.
+	  */
+	 private void load_jar_location(){
+		  try{
+			   CodeSource cs = MyFolder.class.getProtectionDomain().getCodeSource();
+			   File jarfile = new  File(cs.getLocation().toURI().getPath());
+			   File directoryJar = jarfile.getParentFile();
+			   if(directoryJar!= null) {
+					if (directoryJar.isDirectory()) {
+						 jar_folder = directoryJar.getAbsolutePath();
+					}
+			   }else{
+					throw new NullPointerException("A null reference cannot be used");
+			   }
+		  }catch (URISyntaxException exc){
+			   //logging must go here
+			   exc.getStackTrace();
+		  }
+	 }
+
+	 /**
+	  * This method will return you the locationg of the jar in executiong within the computer.
+	  * @return A string where location of the jar in execution is
+	  */
+
+	 public String getJarPath (){
+		  load_jar_location();
+		  return jar_folder;
+	 }
+
+	 /**
+	  * this static method returns a list of the drive roots of the computer
 	  * @return a list of roots are in form of a file[]
 	  */
 	 public static File[] getDriveRoots(){
 	 	 return File.listRoots();
 	 }
+
 
 	 /**
 	  *  this method return the type of the drive passed as a file. in form disk, cd drive, etc
