@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
+/**
+ * This class implements MyConnection interface for the sqlite db connection
+ */
+
 public class SqliteConnection implements MyConnection {
 
 	 private String link_connection = "jdbc:sqlite:";
