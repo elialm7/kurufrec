@@ -3,6 +3,10 @@ package Infrastructure.Connection;
 import java.sql.SQLException;
 import java.sql.Connection;
 
+/**
+ * This interface is the definition for the different types of DDBB connection that can be implemented.
+ */
+
 public interface MyConnection {
 
 	 /**
