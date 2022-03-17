@@ -1,5 +1,9 @@
 package Domain.DTO.Entities;
 
+
+/**
+ * This class defines the dto entity for the Myfile table in the database.
+ */
 public class MyFile {
 
 	 private String name;
