@@ -13,7 +13,7 @@ public interface Dao<T> {
 	  * @param id of the object needed.
 	  * @return the objected asked
 	  */
-	 Optional<T> getData(long id );
+	 Optional<T> getData(int id );
 
 	 /**
 	  * return a list of objects asked
@@ -43,4 +43,15 @@ public interface Dao<T> {
 	  * @return true if it si deleted. false if not.
 	  */
 	 boolean delete(T todelete);
+
+
+	 /**
+	  *  this method returns a list filter by the filter and what coincided with the searched
+	  * @param searched what is about to be search
+	  * @param filter the filter, idk.
+	  * @return a list of t of T that coincided with the searched.
+	  */
+	 List<T> searchby(String searched, String filter);
+
+
 }
