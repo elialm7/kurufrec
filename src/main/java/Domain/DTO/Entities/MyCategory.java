@@ -1,5 +1,9 @@
 package Domain.DTO.Entities;
 
+
+/**
+ * This class defines the dto entity for the MyCategory table in the database.
+ */
 public class MyCategory {
 
 	private int id;
