@@ -1,5 +1,8 @@
 package Infrastructure.Connection;
 
+import com.ibatis.common.jdbc.ScriptRunner;
+
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -66,5 +69,26 @@ public class SqliteConnection implements MyConnection {
 	  */
 	 public synchronized String getdb_location(){
 	 	 return this.db_location;
+	 }
+
+	 /**
+	  * When you want to execute direct some statement to the database. this method will execute it
+	  * @param command the command you need to execute
+	  * @throws SQLException the type of exception will return if your command is wrong.
+	  */
+	 public void executeonsqlite(String command) throws SQLException {
+	 	 	this.connect().createStatement().execute(command);
+	 }
+
+	 /**
+	  *
+	  * this methodo will read a sql file where the tables, data, etc are define.
+	  * @param location the location of the file.
+	  * @throws SQLException if the file contains mistakes
+	  * @throws IOException if the file doesn't exist.
+	  */
+	 public void executesqlitefile(String location) throws SQLException, IOException {
+		  ScriptRunner scriptRunner = new ScriptRunner(this.connect(), false, true);
+		  scriptRunner.runScript(new BufferedReader(new FileReader(location)));
 	 }
 }
