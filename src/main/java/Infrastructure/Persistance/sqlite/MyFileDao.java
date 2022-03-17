@@ -14,7 +14,7 @@ public class MyFileDao  implements Dao<MyFile> {
 	 }
 
 	 @Override
-	 public Optional<MyFile> getData(long id) {
+	 public Optional<MyFile> getData(int id) {
 		  return Optional.empty();
 	 }
 
@@ -36,5 +36,10 @@ public class MyFileDao  implements Dao<MyFile> {
 	 @Override
 	 public boolean delete(MyFile todelete) {
 		  return false;
+	 }
+
+	 @Override
+	 public List<MyFile> searchby(String searched, String filter) {
+		  return null;
 	 }
 }
