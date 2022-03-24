@@ -2,7 +2,7 @@ package Infrastructure.Persistance.sqlite;
 
 import Domain.DTO.Entities.MyFile;
 import Infrastructure.Connection.MyConnection;
-import Infrastructure.Persistance.DaoInterface.Dao;
+import Infrastructure.Persistance.DaoInterface.ImyFile;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * this class is the implementation of dao for the Myfile entity.
  */
 
-public class MyFileDao  implements Dao<MyFile> {
+public class MyFileDao implements ImyFile {
 	 private MyConnection connection;
 	 public MyFileDao(MyConnection connection){
 	 	 this.connection = connection;
