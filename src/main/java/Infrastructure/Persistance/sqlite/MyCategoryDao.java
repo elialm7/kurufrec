@@ -2,8 +2,7 @@ package Infrastructure.Persistance.sqlite;
 
 import Domain.DTO.Entities.MyCategory;
 import Infrastructure.Connection.MyConnection;
-import Infrastructure.Persistance.DaoInterface.Dao;
-
+import Infrastructure.Persistance.DaoInterface.ImyCategory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +16,7 @@ import java.util.Optional;
 /**
  *This class is the dao implementation for the Mycategory table.
  */
-public class MyCategoryDao implements Dao<MyCategory> {
+public class MyCategoryDao implements ImyCategory {
 	 private  MyConnection connection ;
 	 public MyCategoryDao(MyConnection connection){
 	 	 this.connection = connection;
