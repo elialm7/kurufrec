@@ -69,8 +69,9 @@ public class MyCategoryDao implements ImyCategory {
 			   String sql = "select * from MyCategory; ";
 			   PreparedStatement preparedStatement = conn.prepareStatement(sql);
 			   ResultSet rs = preparedStatement.executeQuery();
-			   MyCategory cat = new MyCategory();
+			   MyCategory cat;
 			   while(rs.next()){
+			   	 	cat = new MyCategory();
 					cat.setId(rs.getInt("idcat"));
 					cat.setDescription(rs.getString("descritpion"));
 					cat.setTitle(rs.getString("title"));
