@@ -10,7 +10,7 @@ import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.nio.file.StandardCopyOption.*;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * This class consists of methods that works with directories according to the needs of the project.
@@ -129,5 +129,14 @@ public class MyFolder {
 	 public static String getDriveType (File rootdrive){
 		  FileSystemView fsv = FileSystemView.getFileSystemView();
 		  return fsv.getSystemTypeDescription(rootdrive);
+	 }
+
+	 /**
+	  * Check if the file passed as a string exist in the system or no.
+	  * @param path the path to be checked
+	  * @return true if it exist or false if it not .
+	  */
+	 public static boolean PathExists(String path){
+	 	 return new File(path).exists();
 	 }
 }
