@@ -1,4 +1,4 @@
-package Domain.FileManagement;
+package core.model.FileManagement;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -70,7 +70,7 @@ public class MyFolder {
 		  File[] list = root.listFiles();
 		  if (list == null) return;
 		  for ( File f : list ) {
-			   if ( f.isDirectory()) {
+			   if (f.isDirectory()) {
 			   	    //recursive call
 					getFilesPathList( f.getAbsolutePath(), array);
 			   }
@@ -101,26 +101,14 @@ public class MyFolder {
 			   exc.getStackTrace();
 		  }
 	 }
-
 	 /**
 	  * This method will return you the locationg of the jar in executiong within the computer.
 	  * @return A string where location of the jar in execution is
 	  */
-
 	 public String getJarPath (){
 		  load_jar_location();
 		  return jar_folder;
 	 }
-
-	 /**
-	  * this static method returns a list of the drive roots of the computer
-	  * @return a list of roots are in form of a file[]
-	  */
-	 public static File[] getDriveRoots(){
-	 	 return File.listRoots();
-	 }
-
-
 	 /**
 	  *  this method return the type of the drive passed as a file. in form disk, cd drive, etc
 	  * @param rootdrive the drive which we want to know what type is
