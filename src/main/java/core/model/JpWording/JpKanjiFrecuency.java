@@ -43,6 +43,7 @@ public class JpKanjiFrecuency{
 	 	 this.RawKanjis = new ArrayList<>();
 	 	 this.encapsulatedKanji = new ArrayList<>();
 	 }
+	 //gets a string and it separates into a list.
 	 private List<String> putStringintoList(String mixedtext){
 		  List<String> result = new ArrayList<>();
 		  for(int i = 0; i < mixedtext.length(); i = mixedtext.offsetByCodePoints(i, 1)){
