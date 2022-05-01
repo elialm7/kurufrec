@@ -68,9 +68,9 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane fx:id="label_info" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label alignment="CENTER" layoutX="-2.0" layoutY="345.0" prefHeight="31.0" prefWidth="640.0" style="&#10;" text="Information Text component" textFill="#323030" wrapText="false" />
+        <Label fx:id="label_info" alignment="CENTER" layoutX="-2.0" layoutY="345.0" prefHeight="31.0" prefWidth="640.0" style="&#10;" text="Information Text component" textFill="#323030" wrapText="false" />
             <TextArea fx:id="text_area" layoutY="-3.0" prefHeight="350.0" prefWidth="640.0" />
       </children>
     </AnchorPane>
