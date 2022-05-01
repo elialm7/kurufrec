@@ -67,6 +67,11 @@ public class JpKanjiFrecuency{
 	 	 str.append(this.getKanjiFilteredfromAString(text_with_kanji));
 	 	 this.RawKanjis.addAll(this.putStringintoList(str.toString()));
 	 }
+	 public void addKanjiStringFromList(List<String> texts_withKanji){
+	 	 for(String e : texts_withKanji){
+	 	 	 addKanjiFromString(e);
+		 }
+	 }
 	 public void doFrecuency(){
 	 	 this.encapsulatedKanji.addAll(this.getKanjiFrecuencyList(this.RawKanjis));
 	 }
