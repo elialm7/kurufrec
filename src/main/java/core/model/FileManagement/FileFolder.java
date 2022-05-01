@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,10 +24,14 @@ public class FileFolder {
 	 	 return loaded;
 	 }
 
-	 public void loadfiles(){
-	 	 files = this.getStringPathtoFiles(folder.getFilesList());
-	 	 filesIterator = files.iterator();
-	 	 loaded = true;
+	 public boolean loadfiles(){
+
+	 	 files = folder.getFilesList_();
+	 	 if(files.size()>0){
+			  filesIterator = files.iterator();
+			  loaded = true;
+		 }
+	 	 return loaded;
 	 }
 	 public String readNextFile(){
 	 	 String fileinfo= "";
@@ -54,21 +57,10 @@ public class FileFolder {
 		  }
 		  return sb.toString();
 	 }
-	 private List<File> getStringPathtoFiles(List<String> paths){
-	 	 List<File> files = new ArrayList<>();
-	 	 File file;
-	 	 for(String pathfile: paths){
-	 	 	 file = new File(pathfile);
-	 	 	 files.add(file);
-		 }
-	 	 return files;
-	 }
 
 	 public int getfilestotal(){
 	 	 return this.files.size();
 	 }
-
-
 	 public void clear(){
 	 	 this.files.clear();
 	 	 this.filesIterator = null;
