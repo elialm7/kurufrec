@@ -10,32 +10,43 @@ import java.util.Objects;
  */
 public class MyFolder {
 
-	 //private String jar_folder;
-	private String pathfolder;
-	 public MyFolder(){}
+	private File rootfolder;
+	public MyFolder(){}
 
 	 public MyFolder(String folder){
-	 	 this.pathfolder = folder;
+	 	 this.rootfolder = new File(folder);
+	 }
+
+	 public MyFolder(File file){
+	 	 this.rootfolder = file;
 	 }
 
 	 public List<String> getFilesList(){
-	 	 return getFilesList(this.pathfolder);
+		  List<String> all_files = new ArrayList<>();
+		  getFolderFilesList(this.rootfolder, all_files);
+		  return all_files;
 	 }
-	 public List<String> getFilesList(String folder){
-	 	 List<String> all_files = new ArrayList<>();
-	 	 getFolderFilesList(folder, all_files);
-	 	 return all_files;
-	 }
-	 private void getFolderFilesList(String path, List<String> arraylist) {
-		  File root = new File( path );
+	 private void getFolderFilesList(File path, List<String> arraylist) {
+		  File root = path;
 		  File[] list = root.listFiles();
 		  if (Objects.isNull(list)) return;
 		  for ( File f : list ) {
 			   if (f.isDirectory()) {
-					getFolderFilesList( f.getAbsolutePath(), arraylist);
+					getFolderFilesList(f, arraylist);
 			   } else {
 					arraylist.add(f.getAbsoluteFile().getAbsolutePath());
 			   }
 		  }
+	 }
+
+	 public List<File> getFilesList_(){
+		  List<File> files = new ArrayList<>();
+		  List<String> path_strings = getFilesList();
+		  File file;
+		  for(String pathfile: path_strings){
+			   file = new File(pathfile);
+			   files.add(file);
+		  }
+		  return files;
 	 }
 }
