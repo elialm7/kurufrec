@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_kuru_indexer" default="compile.module.kuru_indexer">
+  <dirname property="module.kuru_indexer.basedir" file="${ant.file.module_kuru_indexer}"/>
+  
+  <property name="module.jdk.home.kuru_indexer" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.kuru_indexer" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.kuru_indexer" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.kuru_indexer" value="-encoding UTF-8 -source 10 -target 1.5 ${compiler.args}"/>
+  
+  <property name="kuru_indexer.output.dir" value="${module.kuru_indexer.basedir}/target/classes"/>
+  <property name="kuru_indexer.testoutput.dir" value="${module.kuru_indexer.basedir}/target/test-classes"/>
+  
+  <path id="kuru_indexer.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="kuru_indexer.module.production.classpath">
+    <path refid="${module.jdk.classpath.kuru_indexer}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.12.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.28.0.classpath"/>
+    <path refid="library.maven:_com.ibatis:ibatis2-common:2.1.7.597.classpath"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_info.picocli:picocli:4.6.3.classpath"/>
+    <path refid="library.maven:_io.quarkus:quarkus-picocli:unknown.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+  </path>
+  
+  <path id="kuru_indexer.runtime.production.module.classpath">
+    <pathelement location="${kuru_indexer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.12.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.28.0.classpath"/>
+    <path refid="library.maven:_com.ibatis:ibatis2-common:2.1.7.597.classpath"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_info.picocli:picocli:4.6.3.classpath"/>
+    <path refid="library.maven:_io.quarkus:quarkus-picocli:unknown.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+  </path>
+  
+  <path id="kuru_indexer.module.classpath">
+    <path refid="${module.jdk.classpath.kuru_indexer}"/>
+    <pathelement location="${kuru_indexer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.12.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.28.0.classpath"/>
+    <path refid="library.maven:_com.ibatis:ibatis2-common:2.1.7.597.classpath"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_info.picocli:picocli:4.6.3.classpath"/>
+    <path refid="library.maven:_io.quarkus:quarkus-picocli:unknown.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+  </path>
+  
+  <path id="kuru_indexer.runtime.module.classpath">
+    <pathelement location="${kuru_indexer.testoutput.dir}"/>
+    <pathelement location="${kuru_indexer.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.12.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.28.0.classpath"/>
+    <path refid="library.maven:_com.ibatis:ibatis2-common:2.1.7.597.classpath"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_info.picocli:picocli:4.6.3.classpath"/>
+    <path refid="library.maven:_io.quarkus:quarkus-picocli:unknown.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.kuru_indexer">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.kuru_indexer">
+    <patternset refid="excluded.from.module.kuru_indexer"/>
+  </patternset>
+  
+  <path id="kuru_indexer.module.sourcepath">
+    <dirset dir="${module.kuru_indexer.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="kuru_indexer.module.test.sourcepath">
+    <dirset dir="${module.kuru_indexer.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.kuru_indexer" depends="compile.module.kuru_indexer.production,compile.module.kuru_indexer.tests" description="Compile module kuru_indexer"/>
+  
+  <target name="compile.module.kuru_indexer.production" depends="register.custom.compilers" description="Compile module kuru_indexer; production classes">
+    <mkdir dir="${kuru_indexer.output.dir}"/>
+    <javac2 destdir="${kuru_indexer.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.kuru_indexer}/javac">
+      <compilerarg line="${compiler.args.kuru_indexer}"/>
+      <bootclasspath refid="kuru_indexer.module.bootclasspath"/>
+      <classpath refid="kuru_indexer.module.production.classpath"/>
+      <src refid="kuru_indexer.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.kuru_indexer"/>
+    </javac2>
+    
+    <copy todir="${kuru_indexer.output.dir}">
+      <fileset dir="${module.kuru_indexer.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.kuru_indexer.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.kuru_indexer.tests" depends="register.custom.compilers,compile.module.kuru_indexer.production" description="compile module kuru_indexer; test classes" unless="skip.tests">
+    <mkdir dir="${kuru_indexer.testoutput.dir}"/>
+    <javac2 destdir="${kuru_indexer.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.kuru_indexer}/javac">
+      <compilerarg line="${compiler.args.kuru_indexer}"/>
+      <bootclasspath refid="kuru_indexer.module.bootclasspath"/>
+      <classpath refid="kuru_indexer.module.classpath"/>
+      <src refid="kuru_indexer.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.kuru_indexer"/>
+    </javac2>
+    
+    <copy todir="${kuru_indexer.testoutput.dir}">
+      <fileset dir="${module.kuru_indexer.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.kuru_indexer" description="cleanup module">
+    <delete dir="${kuru_indexer.output.dir}"/>
+    <delete dir="${kuru_indexer.testoutput.dir}"/>
+  </target>
+</project>
