@@ -1,11 +1,12 @@
+
+
 package core.App_runner;
-
-
 import core.controller.MainWinController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
@@ -28,7 +29,8 @@ public class App_main extends Application {
 			   MainWinController controller = new MainWinController(stage);
 			   fxmlLoader.setController(controller);
 			   stage.setScene(new Scene(fxmlLoader.load()));
-			   stage.setTitle("KuruFrec tool alpha");
+			   stage.setTitle("KuruFrec tool beta");
+			   stage.getIcons().add(new Image("/img/logo.png"));
 			   stage.setResizable(false);
 			   stage.show();
 			   } catch (IOException e) {
