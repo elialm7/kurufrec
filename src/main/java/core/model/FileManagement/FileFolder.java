@@ -1,3 +1,10 @@
+
+/*
+ * Copyright (C)
+ * This file is part of KuruFrec Tool  which is released under the MIT LICENSE.
+ * See file LICENSE.TXT  for full license details.
+ */
+
 package core.model.FileManagement;
 
 import org.apache.log4j.Logger;
@@ -6,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,6 +50,17 @@ public class FileFolder {
 			}
 		 }
 	 	 return fileinfo;
+	 }
+
+	 public List<String> readAllFiles(){
+		  List<String> content = new ArrayList<>();
+	 	 if(loaded) {
+			  int total = this.getfilestotal();
+			  for (int i = 0; i < total; i++) {
+				   content.add(readNextFile());
+			  }
+		 }
+		 return content;
 	 }
 	 private String getStringFromFile(File file){
 		  StringBuffer sb = new StringBuffer();//constructs a string buffer with no characters

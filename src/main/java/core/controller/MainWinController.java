@@ -1,3 +1,10 @@
+
+/*
+ * Copyright (C)
+ * This file is part of KuruFrec Tool  which is released under the MIT LICENSE.
+ * See file LICENSE.TXT  for full license details.
+ */
+
 package core.controller;
 
 import core.model.JpWordingFacade.JpWordingF;
@@ -5,6 +12,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -72,7 +80,9 @@ public class MainWinController implements Initializable {
 	 @Override
 	 public void initialize(URL url, ResourceBundle resourceBundle) {
 			set_components_events();
-
+			label_info.setText("Welcome to KuruFrec tool beta ");
+			this.do_From_TextArea.setVisible(false);
+			this.do_From_TextArea.setDisable(false);
 	 }
 
 	 /**
@@ -100,20 +110,25 @@ public class MainWinController implements Initializable {
 			 Task<Boolean> kanjitask = jputil.do_kanji_han_frec();
 			 this.label_info.setText("Kanji operation set up successfully.");
 			 this.label_info.textProperty().bind(kanjitask.messageProperty());
-			 kanjitask.setOnSucceeded(workerStateEvent -> {
-				 this.text_area.setText(jputil.getKanjiFrecuencyText());
-		   });
+			 kanjitask.setOnSucceeded(workerStateEvent -> Platform.runLater(() -> text_area.setText(jputil.getKanjiFrecuencyText())));
 			 jputil.dothread(kanjitask);
 		}else{
-	 	 	 this.label_info.setText("The files have not been loaded. :(");
+	 	 	 this.label_info.setText("The files haven't been loaded. :(");
 		 }
 	 }
 
 	 // does the action for the japanese frecuency
 	 private void jp_vocab_frecuency_action(){
 
-
-
+	 	 if(jputil.isloaded()){
+	 	 	 Task<Boolean> jptask = jputil.do_jp_vocab_frec();
+	 	 	 this.label_info.setText("Jp Word operation task set up succesfully");
+	 	 	 this.label_info.textProperty().bind(jptask.messageProperty());
+	 	 	 jptask.setOnSucceeded(workerStateEvent -> Platform.runLater(() -> text_area.setText(jputil.getJpWordFrecuency())));
+	 	 	 jputil.dothread(jptask);
+		 }else{
+	 	 	 this.label_info.setText("The files haven't been loaded yet. :(");
+		 }
 	 }
 
 
@@ -136,13 +151,15 @@ public class MainWinController implements Initializable {
 	}
 	private void save_as_action(){
 		 FileChooser fileChooser = new FileChooser();
-		 fileChooser.setTitle("Open Resource File");
+		 fileChooser.setTitle("Save File");
 		 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
 		 File selectedFile = fileChooser.showSaveDialog(st);
-		 if(!Objects.isNull(selectedFile)){
-
-
-
+		 if(!text_area.getText().isEmpty()) {
+			  Task<Boolean> printingTaks = jputil.printOnfile(new File(selectedFile.getAbsolutePath()), text_area.getText());
+			  printingTaks.setOnSucceeded(workerStateEvent -> label_info.setText("The file has been written succesfully"));
+			  jputil.dothread(printingTaks);
+		 }else{
+		 	 label_info.setText("Please, Write something in the Text area to save. or do one the Tools options.");
 		 }
 	}
 	private void quit_action(){
@@ -171,13 +188,20 @@ public class MainWinController implements Initializable {
 
 	}
 	 private void clear_clean_textarea_action(){
-
 	 	 this.jputil.clear();
 	 	 this.text_area.clear();
 	 }
 
 	 private void about_action(){
-
-
+		  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		  alert.setTitle("About");
+		  alert.setHeaderText("Information About KuruFrec tool beta");
+		  alert.setContentText("This software was developed by Elias Ojeda.\n" +
+				  "This software makes a frecuency list for japanese words and Japanese kanji and chinese hanzi.\n" +
+				  "For the tokenization part I used the Kuromoji library.\n"+
+		  "This is just a wrapped up of the code I had already developed for my own needs.\n" +
+				  "therefore this version is not well coded or designed.");
+		  alert.initOwner(st);
+		  alert.showAndWait();
 	 }
 }
