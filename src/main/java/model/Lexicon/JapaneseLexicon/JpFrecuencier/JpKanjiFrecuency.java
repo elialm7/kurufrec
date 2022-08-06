@@ -6,17 +6,13 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package core.model.JpWording;
+package model.Lexicon.JapaneseLexicon.JpFrecuencier;
 
-import core.model.JpWording.tok.KanjiFrecuency;
-
-import java.util.*;
-import java.util.regex.Pattern;
 
 public class JpKanjiFrecuency{
 
 	 private String REGEXKANJI = "[\\u4e00-\\u9faf]|[\\u3400-\\u4dbf]";
-
+/*
 	 private List<String> RawKanjis;
 	 private List<KanjiFrecuency> encapsulatedKanji;
 
@@ -56,9 +52,11 @@ public class JpKanjiFrecuency{
 	 public void doFrecuency(){
 	 	 this.encapsulatedKanji.addAll(this.getKanjiFrecuencyList(this.RawKanjis));
 	 }
+
 	 public void doSorting(){
 	 	 this.encapsulatedKanji.sort(new DefaultFrecuencyComparator());
 	 }
+
 	 public void doSorting(Comparator<KanjiFrecuency> comparator){
 	 	 if(!Objects.isNull(comparator)) {
 			  this.encapsulatedKanji.sort(comparator);
@@ -92,5 +90,6 @@ public class JpKanjiFrecuency{
 	 public List<String> getRawKanjiList(){
 	 	 return this.RawKanjis;
 	 }
+	 */
 }
 
