@@ -6,11 +6,9 @@
 
 package model.Folder;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,7 @@ public class MyFolder {
 	 public static String getStringFromFile(File file){
 		  StringBuffer sb = new StringBuffer();
 		  try {
-			   BufferedReader br = new BufferedReader(new FileReader(file));
+			   BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
 			   String line;
 			   while ((line = br.readLine()) != null) {
 					sb.append(line).append("\n");
