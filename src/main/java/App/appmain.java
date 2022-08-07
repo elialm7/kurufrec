@@ -12,10 +12,8 @@ import model.Lexicon.JapaneseLexicon.JpWord.JpWordBuilder;
 import model.Property.ConfProperty;
 import model.Property.PropertyLoader;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -124,8 +122,15 @@ public class appmain {
 					   equalsIgnoreCase(JpWordBuilder.ADJECTIVE_ENGLISH);
 		  };
 		  List<JpWord> frecuencyResults = frecuencyWordList.stream().filter(bytype).collect(Collectors.toList());
-		  File output = new File(properties.getOutput());
+		  File output = getFile();
 		  writeintofile(output, frecuencyResults);
+	 }
+	 private static File getFile(){
+	 	 if(properties.isFromjar()){
+	 	 	 return new File(jar, properties.getOutput());
+		 }else{
+	 	 	 return new File(properties.getOutput());
+		 }
 	 }
 	 private static JpFrecuencier getFrecuencierInstance(){
 	 	 File origin = null;
@@ -151,7 +156,7 @@ public class appmain {
 	 	 String meta = "the amount of words: "+words.size()+"\n";
 		  String header = "Index,word,reading,pronunciation,type,frecuency\n";
 		  try {
-			  BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(output));
+			  BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8));
 			  bufferedWriter.write(meta);
 			  bufferedWriter.write(header);
 			  Iterator<JpWord> it = words.iterator();
