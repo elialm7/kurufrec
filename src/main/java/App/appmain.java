@@ -31,7 +31,7 @@ public class appmain {
 	 private static void start(){
 		  try {
 			   File fileT = new File(MyFolder.getJarFile(), propertyFile);
-			   System.out.println("#### Welcome to KuruFrec 1.0 #### ");
+			   System.out.println("#### Welcome to KuruFrec 1.1 #### ");
 			   System.out.println("Verifying if the file exists...");
 			   loader = new PropertyLoader(propertyFile);
 			   if(!fileT.exists()){
@@ -154,7 +154,7 @@ public class appmain {
 
 	 public static void writeintofile(File output, List<JpWord> words) {
 	 	 String meta = "the amount of words: "+words.size()+"\n";
-		  String header = "Index,word,reading,pronunciation,type,frecuency\n";
+	 	 String header = "Index,Word,Reading,Pronunciation,Type,Frecuency,Romaji\n";
 		  try {
 			  BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8));
 			  bufferedWriter.write(meta);
