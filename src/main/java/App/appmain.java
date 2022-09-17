@@ -20,7 +20,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class appmain {
-	 private static String propertyFile = "conf.properties";
+	 private static String propertyFile = "..\\conf.properties";
 	 private static PropertyLoader loader;
 	 private static ConfProperty properties;
 	 private static File jar = MyFolder.getJarFile();
