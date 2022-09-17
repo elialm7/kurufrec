@@ -1,3 +1,6 @@
 .iml
 .properties
 .module_kuru_indexer.xml
+/.idea
+/log
+/kuru_indexer
