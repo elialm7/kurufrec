@@ -15,6 +15,7 @@ public class JpWord{
 	private String Reading;
 	private String Pronunciation;
 	private String type;
+	private String romaji;
 	private int weigh;
 	private int frecuency;
 	private String index;
@@ -79,6 +80,15 @@ public class JpWord{
 		  Pronunciation = pronunciation;
 	 }
 
+
+	 public String getRomaji() {
+		  return romaji;
+	 }
+
+	 public void setRomaji(String romaji) {
+		  this.romaji = romaji;
+	 }
+
 	 @Override
 	 public boolean equals(Object o) {
 		  if (this == o) return true;
@@ -99,6 +109,6 @@ public class JpWord{
 	 @Override
 	 public String toString() {
 		  return word + "," + Reading +"," + Pronunciation + "," +type + ","+ weigh +
-				  "," + frecuency;
+				  "," + frecuency+","+romaji;
 	 }
 }
