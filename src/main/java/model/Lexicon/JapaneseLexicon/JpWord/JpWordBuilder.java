@@ -7,6 +7,8 @@
 package model.Lexicon.JapaneseLexicon.JpWord;
 
 import com.atilika.kuromoji.ipadic.Token;
+import com.moji4j.MojiConverter;
+import com.moji4j.MojiDetector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,12 @@ public class JpWordBuilder {
 
 	 public static final int NO_DEFINED_WEIGH = -1;
 
+	 private static MojiDetector detector;
+	 private static MojiConverter converter;
+
 	 public static JpWord fromToken(Token tk){
+	 	 detector = new MojiDetector();
+	 	 converter = new MojiConverter();
 	 	 JpWord word = new JpWord();
 	 	 String speech_1 = tk.getPartOfSpeechLevel1();
 	 	 String theword = tk.getSurface();
@@ -67,7 +74,16 @@ public class JpWordBuilder {
 	 	 word.setWord(theword);
 	 	 word.setReading(tk.getReading());
 	 	 word.setPronunciation(tk.getPronunciation());
+	 	 word.setRomaji(getRomaji(word.getReading()));
 	 	 return word;
+	 }
+
+	 private static String getRomaji(String kana){
+	 	 //implementation goes here
+		  if(detector.hasKana(kana)){
+		  	 return converter.convertKanaToRomaji(kana);
+		  }
+		  return "";
 	 }
 
 	 public static List<JpWord> fromTokens(List<Token> tokens){
