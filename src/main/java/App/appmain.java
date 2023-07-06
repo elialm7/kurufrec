@@ -38,42 +38,6 @@ public class appmain extends Application {
 /*
 
 
-	 private static void makeFrecuency(){
-		  JpFrecuencier jpFrecuencier = getFrecuencierInstance();
-		  List<JpWord> frecuencyWordList = jpFrecuencier.getFrecuencyWordList();
-		  Predicate<JpWord> bytype = jpWord -> jpWord.getType().equalsIgnoreCase(JpWordBuilder.ADVERB_ENGLISH) || jpWord.getType().
-				 equalsIgnoreCase( JpWordBuilder.NOUN_ENGLISH) || jpWord.getType().equalsIgnoreCase(JpWordBuilder.VERB_ENGLISH) || jpWord.getType().
-				 equalsIgnoreCase(JpWordBuilder.ADJECTIVE_ENGLISH);
-		  List<JpWord> frecuencyResults = frecuencyWordList.stream().filter(bytype).collect(Collectors.toList());
-		  File output = getFile();
-		  writeintofile(output, frecuencyResults);
-	 }
-	 private static File getFile(){
-	 	 if(properties.isFromjar()){
-	 	 	 return new File(jar, properties.getOutput());
-		 }else{
-	 	 	 return new File(properties.getOutput());
-		 }
-	 }
-	 private static JpFrecuencier getFrecuencierInstance(){
-	 	 File origin = null;
-	 	 if(properties.isFromjar()){
-	 	 	 if(properties.isWfile()){
-	 	 	 	 origin = new File(jar, properties.getFileloc());
-			 }
-			 if(properties.isWfolder()){
-	 	 	 	 origin = new File(jar, properties.getFolderloc());
-			 }
-		 }else {
-	 	 	 if(properties.isWfile()){
-	 	 	 	 origin = new File(properties.getFileloc());
-			 }
-			 if(properties.isWfolder()){
-	 	 	 	 origin = new File(properties.getFolderloc());
-			 }
-		 }
-		 return new JpFrecuencier(origin);
-	 }
 
 	 public static void writeintofile(File output, List<JpWord> words) {
 	 	 String meta = "the amount of words: "+words.size()+"\n";
