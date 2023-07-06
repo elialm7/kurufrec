@@ -50,7 +50,7 @@ public class MainWindowController implements Initializable {
 	 	 this.fxmlloader.setController(this);
 	 	 this.windowstage.setScene(new Scene(this.fxmlloader.load()));
 	 	 this.windowstage.setResizable(false);
-	 	 this.windowstage.setTitle("KuruFrec v1.0.0");
+	 	 this.windowstage.setTitle("KuruFrec v2.0.0");
 	 	 this.windowstage.show();
 	 }
 	 @Override
