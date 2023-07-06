@@ -4,7 +4,14 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.JapaneseLexicon.JpDecoder;
+package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder;
+
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp.JpFileDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp.JpFolderDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp.JpTextDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type.JpDecoderType;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
+
 public class JpDecoderBuilder {
 	 private JpDecoderBuilder(){}
 	 public static KuroDecoder BuildDecoder(JpDecoderType type){

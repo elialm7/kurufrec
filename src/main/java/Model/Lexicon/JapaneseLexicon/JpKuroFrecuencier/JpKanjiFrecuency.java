@@ -6,7 +6,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.JapaneseLexicon.JpFrecuencier;
+package Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier;
 
 
 public class JpKanjiFrecuency{

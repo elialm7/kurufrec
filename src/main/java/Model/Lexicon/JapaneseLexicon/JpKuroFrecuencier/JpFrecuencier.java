@@ -4,12 +4,12 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.JapaneseLexicon.JpFrecuencier;
+package Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier;
 
-import model.Lexicon.JapaneseLexicon.JpDecoder.JpDecoderBuilder;
-import model.Lexicon.JapaneseLexicon.JpDecoder.JpDecoderType;
-import model.Lexicon.JapaneseLexicon.JpDecoder.KuroDecoder;
-import model.Lexicon.JapaneseLexicon.JpWord.JpWord;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.JpDecoderBuilder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type.JpDecoderType;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
+import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -4,12 +4,12 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.JapaneseLexicon.JpDecoder;
+package Model.Lexicon.JapaneseLexicon.JpKuroDecoder;
 
 
 import com.atilika.kuromoji.ipadic.Token;
 import com.atilika.kuromoji.ipadic.Tokenizer;
-import model.Lexicon.Decoder.Decoder;
+import Model.Lexicon.Decoder.Decoder;
 
 import java.util.List;
 

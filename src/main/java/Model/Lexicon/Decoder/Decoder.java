@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.Decoder;
+package Model.Lexicon.Decoder;
 
 public interface Decoder<I, O> {
 	 void set(I Indata);

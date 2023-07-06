@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.JapaneseLexicon.JpWord;
+package Model.Lexicon.JapaneseLexicon.JpWord;
 
 import com.atilika.kuromoji.ipadic.Token;
 import com.moji4j.MojiConverter;

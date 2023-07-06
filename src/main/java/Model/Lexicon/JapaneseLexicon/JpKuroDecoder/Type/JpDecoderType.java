@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Lexicon.JapaneseLexicon.JpDecoder;
+package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type;
 
 public enum JpDecoderType {
 

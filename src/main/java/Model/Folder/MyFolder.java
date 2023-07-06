@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package model.Folder;
+package Model.Folder;
 
 import java.io.*;
 import java.net.URISyntaxException;
