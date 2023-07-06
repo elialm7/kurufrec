@@ -6,22 +6,12 @@
 package App;
 
 import Controller.MainWindowController;
-import Model.Folder.MyFolder;
-import Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier.JpFrecuencier;
-import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
-import Model.Lexicon.JapaneseLexicon.JpWord.JpWordBuilder;
-import Model.Property.ConfProperty;
-import Model.Property.PropertyLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
 
 public class appmain extends Application {
 	 private Stage mainwindowStage;
