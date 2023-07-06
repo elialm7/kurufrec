@@ -14,6 +14,7 @@ import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class JpFrecuencier {
@@ -26,6 +27,10 @@ public class JpFrecuencier {
 			  decoder = JpDecoderBuilder.BuildDecoder(JpDecoderType.FOLDER_TYPE);
 		 }
 	 	 decoder.set(folder);
+	 }
+	 public JpFrecuencier(String text){
+	 	 decoder = JpDecoderBuilder.BuildDecoder(JpDecoderType.TEXT_TYPE);
+	 	 decoder.set(text);
 	 }
 	 public List<JpWord> getFrecuencyWordList(){
 	 	 List<JpWord> tokenizedwords = this.getTokenizedWords();
@@ -42,6 +47,21 @@ public class JpFrecuencier {
 		 }
 		 FrecuencyWords.sort((o1, o2) -> Integer.compare(o2.getFrecuency(), o1.getFrecuency()));
 	 	 return FrecuencyWords;
+	 }
+	 public String getFrecuencyWordListasString(){
+	 	 StringBuilder strbuilder = new StringBuilder();
+	 	 List<JpWord> words = getFrecuencyWordList();
+	 	 String meta = "Words: " +words.size()+"\n";
+	 	 String header = "Index,Word,Reading,Pronunciation,Type,Frecuency,Romaji\n";
+	 	 strbuilder.append(meta).append(header);
+	 	 Iterator<JpWord> it = words.iterator();
+	 	 int counter = 1;
+	 	 while(it.hasNext()){
+			   JpWord word = it.next();
+			   strbuilder.append(counter+","+word.toString()+"\n");
+			   counter++;
+		  }
+		  return strbuilder.toString();
 	 }
 	 public List<JpWord> getTokenizedWords(){
 	 	 return (List<JpWord>) decoder.get();
