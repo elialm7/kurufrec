@@ -38,8 +38,8 @@
  .....
  ```
  
- ##Sreenshots
- ![](https://ibb.co/Jq2gh25)
+ ### Sreenshots
+ ![](https://i.ibb.co/8b2th26/image.png)
 
  
  ### Download
