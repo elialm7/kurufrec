@@ -3,23 +3,19 @@ package Controller;
 import Model.Folder.FileController;
 import Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier.JpFrecuencier;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -48,6 +44,8 @@ public class MainWindowController implements Initializable {
 	 private CheckBox checkFromTextArea;
 	 @FXML
 	 private ProgressBar ProcessProgressBar;
+	 @FXML
+	 private Button AbtButton;
 
 	 private Stage windowstage;
 	 private FXMLLoader fxmlloader;
@@ -61,6 +59,7 @@ public class MainWindowController implements Initializable {
 	 	 this.windowstage.setScene(new Scene(this.fxmlloader.load()));
 	 	 this.windowstage.setResizable(false);
 	 	 this.windowstage.setTitle("KuruFrec v2.0.0");
+		  this.windowstage.getIcons().add(new Image("/Images/mainicon.png"));
 	 	 this.windowstage.show();
 	 }
 	 private void loaddependecies(){
@@ -85,6 +84,7 @@ public class MainWindowController implements Initializable {
 	 	 this.ClearButton.setOnAction(actionEvent -> ClearButtonAction());
 	 	 this.DoFrButton.setOnAction(actionEvent -> DoFrecuencyButtonAction());
 	 	 this.SaveAsButton.setOnAction(actionEvent -> SaveAsButtonAction());
+	 	 this.AbtButton.setOnAction(actionEvent -> AbtButtonAction());
 	 	 this.checkFromTextArea.selectedProperty().addListener((observableValue, aBoolean, t1) -> CheckBoxListener(t1));
 	 }
 	 private void setUIStateAfterFileLoaded(){
@@ -144,6 +144,14 @@ public class MainWindowController implements Initializable {
 	 private void QuitButtonAction(){
 		  Platform.exit();
 	 }
+	 private void AbtButtonAction(){
+			Alert Info= new Alert(Alert.AlertType.INFORMATION);
+			Info.setHeaderText("ABOUT KURUFREC 2.0.0");
+			Info.setContentText("This software was made using java 11 and javafx 17. " +
+					"\nThe library atilika.kuromoji is in charge of the morphological analysis\n"+
+					"This software is released under the MIT LICENSE."+"\n This software was developed by and is held on www.github.com/elikawa7");
+			Info.showAndWait();
+	 }
 	 private void CheckBoxListener(boolean state){
 	 	 if(state){
 	 	 	 UpdateLeftStatus("Text from TextArea Preferred...");
@@ -180,6 +188,7 @@ public class MainWindowController implements Initializable {
 	 	 	 return;
 		 }
 
+
 	 	  blockUIoptions();
 		  Task<String> frecuencyTask = new Task<String>() {
 			   @Override
@@ -213,9 +222,35 @@ public class MainWindowController implements Initializable {
 	 }
 	 private void SaveAsButtonAction(){
 
-
-
-
+	 	 FileChooser SaveAs = new FileChooser();
+	 	 File selectedFile = SaveAs.showSaveDialog(this.windowstage);
+	 	 if(Objects.isNull(selectedFile))return;
+	 	 Task<Boolean> savetotask = new Task<Boolean>() {
+			  @Override
+			  protected Boolean call() throws Exception {
+				   try {
+						BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile), StandardCharsets.UTF_8));
+						bufferedWriter.write(ProcessedFileTextField.getText());
+						bufferedWriter.close();
+						return true;
+				   } catch (IOException e) {
+						e.printStackTrace();
+						return false;
+				   }
+			  }
+		 };
+	 	 savetotask.runningProperty().addListener((observableValue, aBoolean, t1) -> {
+			  if(t1){
+				   UpdateRightStatus("Writing on File...");
+			  }else{
+				   UpdateRightStatus("Finished!!!");
+			  }
+	 	 	 UpdateVisibiltyProgressBar(t1);
+	 	 });
+	 	 savetotask.setOnSucceeded(workerStateEvent -> UpdateLeftStatus("Path: "+selectedFile.getAbsolutePath()));
+	 	 ExecutorService threadservice = Executors.newSingleThreadExecutor();
+	 	 threadservice.submit(savetotask);
+	 	 threadservice.shutdown();
 	 }
 
 	 @Override
