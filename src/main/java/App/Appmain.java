@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class appmain extends Application {
+public class Appmain extends Application {
 	 private Stage mainwindowStage;
 	 public static void main(String args[]){
 		launch(args);
