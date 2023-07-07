@@ -12,6 +12,7 @@ package Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier;
 public class JpKanjiFrecuency{
 
 	 private String REGEXKANJI = "[\\u4e00-\\u9faf]|[\\u3400-\\u4dbf]";
+	 private String REGEXKANJI_HIRAGANA_KATAKANA = "[\\x{3041}-\\x{3096}\\x{30A0}-\\x{30FF}\\x{3400}-\\x{4DB5}\\x{4E00}-\\x{9FCB}\\x{F900}-\\x{FA6A}\\x{2E80}-\\x{2FD5}\\x{FF5F}-\\x{FF9F}\\x{3000}-\\x{303F}\\x{31F0}-\\x{31FF}\\x{3220}-\\x{3243}\\x{3280}-\\x{337F}]";
 /*
 	 private List<String> RawKanjis;
 	 private List<KanjiFrecuency> encapsulatedKanji;

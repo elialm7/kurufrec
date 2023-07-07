@@ -7,8 +7,8 @@
 package Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier;
 
 import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.JpDecoderBuilder;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type.JpDecoderType;
 import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type.JpDecoderType;
 import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
 
 import java.io.File;
@@ -19,7 +19,6 @@ import java.util.List;
 
 public class JpFrecuencier {
 	 private KuroDecoder decoder;
-
 	 public JpFrecuencier(File folder){
 	 	 if(folder.isFile()){
 	 	 	 decoder = JpDecoderBuilder.BuildDecoder(JpDecoderType.FILE_TYPE);

@@ -10,7 +10,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.IOException;
 
 
 public class appmain extends Application {
@@ -33,33 +33,6 @@ public class appmain extends Application {
 			   //some sort of logging must be implemented
 		  }
 	 }
-
-
-/*
-
-
-
-	 public static void writeintofile(File output, List<JpWord> words) {
-	 	 String meta = "the amount of words: "+words.size()+"\n";
-	 	 String header = "Index,Word,Reading,Pronunciation,Type,Frecuency,Romaji\n";
-		  try {
-			  BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8));
-			  bufferedWriter.write(meta);
-			  bufferedWriter.write(header);
-			  Iterator<JpWord> it = words.iterator();
-			  int counter = 1;
-			   while(it.hasNext()){
-			   	 	JpWord word = it.next();
-					bufferedWriter.write(counter+","+word.toString()+"\n");
-					bufferedWriter.flush();
-					counter++;
-			   }
-			   bufferedWriter.close();
-		  } catch (IOException e) {
-			   e.printStackTrace();
-		  }
-	 }
-*/
 
 }
 
