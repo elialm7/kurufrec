@@ -1,7 +1,6 @@
 # kuru_indexer
    This a small tool I made for creating a japanese frecuency list. <br>
    The code is still pretty immature, but it will evolve...   
-   Currently I'm adding a GUI so other people can use it more easily. the functionality is basically what it is shown in the example below...
 ```
 
 ##Input Example
@@ -38,6 +37,9 @@
  18,もう,モウ,モー,Adverb,4,2,mou
  .....
  ```
+ 
+ ##Sreenshots
+ ![](https://ibb.co/Jq2gh25)
 
  
  ### Download
