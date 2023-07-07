@@ -39,11 +39,13 @@
  ```
  
  ### Sreenshots
+ This GUI APP is still in development before I can upload the final release.
  ![](https://i.ibb.co/8b2th26/image.png)
 
  
  ### Download
  Version v1.0.1 is the only one available but i don't recommend it...
+ Version v2.0.0 GUI is coming soon...
  The text example taken for this one: <br>
  - Song Artist: Ayase  - 夜撫でるメノウ
  ## License
