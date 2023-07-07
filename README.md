@@ -1,19 +1,7 @@
 # kuru_indexer
    This a small tool I made for creating a japanese frecuency list. <br>
-   It is not a serious project. I made it for myself...
-   
-   it is a .cmd that launches a .jar executable. <br>
-   The .jar reads a properties file where the location of the files are written. 
-   
-   ## .Properties Example
-   
-   ```properties
-   fromJar=true
-   folderloc=
-   wfolder=false
-   fileloc=..\\data_test\\Larch1.txt
-   wfile=true
-   out=..\\data_test\\test_results.txt
+   The code is still pretty immature, but it will evolve...   
+   Currently I'm adding a GUI so other people can use it more easily. the functionality is basically what it is shown in the example below...
 ```
 
 ##Input Example
@@ -50,25 +38,10 @@
  18,もう,モウ,モー,Adverb,4,2,mou
  .....
  ```
- 
- ## How to Use.
- 
- Within the properties files you have some options. 
- 
- - folder and file.
- 
- 
- ###Folder and File. 
- 
- When *fromjar* is true, then the .jar looks for the file from the bin location.<br>
- That's why you must add ´..\\´ before the path. If the it is false, then you musy provide the full location from C...
- 
- When *wfolder* is true, then *wfile* must be false, and viceversa. *wfolder*  indicates that it's going to read a folder where 
- a series of files are there. 
- 
+
  
  ### Download
- In the release section there is a .rar file with the examples and the program. 
+ Version v1.0.1 is the only one available but i don't recommend it...
  The text example taken for this one: <br>
  - Song Artist: Ayase  - 夜撫でるメノウ
  ## License
