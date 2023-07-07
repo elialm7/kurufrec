@@ -147,7 +147,7 @@ public class MainWindowController implements Initializable {
 	 private void AbtButtonAction(){
 			Alert Info= new Alert(Alert.AlertType.INFORMATION);
 			Info.setHeaderText("ABOUT KURUFREC 2.0.0");
-			Info.setContentText("This software was made using java 11 and javafx 17. " +
+			Info.setContentText("This software was made using java 11 and javafx 11. " +
 					"\nThe library atilika.kuromoji is in charge of the morphological analysis\n"+
 					"This software is released under the MIT LICENSE."+"\n This software was developed by and is held on www.github.com/elikawa7");
 			Info.showAndWait();
