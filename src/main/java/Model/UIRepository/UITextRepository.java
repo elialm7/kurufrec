@@ -2,7 +2,7 @@ package Model.UIRepository;
 
 public class UITextRepository {
 
-	 public static String AppVersion = "v2.0.0";
+	 public static String AppVersion = "v1.0.0 - Alpha";
 	 public static String AppName = "KuruFrec";
 	 public static String WarningText = "WARNING!!!";
 	 //Abt texts
