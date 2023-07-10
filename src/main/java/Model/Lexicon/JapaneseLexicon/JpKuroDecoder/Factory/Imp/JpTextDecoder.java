@@ -4,16 +4,16 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp;
+package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.Imp;
 
-import com.atilika.kuromoji.ipadic.Token;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
+import Model.Lexicon.Decoder.KuruDecoder;
 import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
 import Model.Lexicon.JapaneseLexicon.JpWord.JpWordBuilder;
+import com.atilika.kuromoji.ipadic.Token;
 
 import java.util.List;
 
-public class JpTextDecoder extends KuroDecoder<String, List<JpWord>> {
+public class JpTextDecoder extends KuruDecoder<String, List<JpWord>> {
 	 private List<Token> tokens;
 	 public void set(String InData){
 	 		 tokens = getTokenized(InData);

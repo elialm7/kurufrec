@@ -6,8 +6,8 @@
 
 package Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier;
 
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.JpDecoderBuilder;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
+import Model.Lexicon.Decoder.KuruDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.JpDecoderFactory;
 import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type.JpDecoderType;
 import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
 
@@ -18,17 +18,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class JpFrecuencier {
-	 private KuroDecoder decoder;
+	 private KuruDecoder decoder;
 	 public JpFrecuencier(File folder){
 	 	 if(folder.isFile()){
-	 	 	 decoder = JpDecoderBuilder.BuildDecoder(JpDecoderType.FILE_TYPE);
+	 	 	 decoder = JpDecoderFactory.BuildDecoder(JpDecoderType.FILE_TYPE);
 		 }else if (folder.isDirectory()) {
-			  decoder = JpDecoderBuilder.BuildDecoder(JpDecoderType.FOLDER_TYPE);
+			  decoder = JpDecoderFactory.BuildDecoder(JpDecoderType.FOLDER_TYPE);
 		 }
 	 	 decoder.set(folder);
 	 }
 	 public JpFrecuencier(String text){
-	 	 decoder = JpDecoderBuilder.BuildDecoder(JpDecoderType.TEXT_TYPE);
+	 	 decoder = JpDecoderFactory.BuildDecoder(JpDecoderType.TEXT_TYPE);
 	 	 decoder.set(text);
 	 }
 	 public List<JpWord> getFrecuencyWordList(){
@@ -47,7 +47,7 @@ public class JpFrecuencier {
 		 FrecuencyWords.sort((o1, o2) -> Integer.compare(o2.getFrecuency(), o1.getFrecuency()));
 	 	 return FrecuencyWords;
 	 }
-	 public String getFrecuencyWordListasString(){
+	 public String getFrecuencyWordListAsString(){
 	 	 StringBuilder strbuilder = new StringBuilder();
 	 	 List<JpWord> words = getFrecuencyWordList();
 	 	 String meta = "Words: " +words.size()+"\n";

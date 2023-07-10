@@ -4,16 +4,16 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.JapaneseLexicon.JpKuroDecoder;
+package Model.Lexicon.Decoder;
 
 
 import com.atilika.kuromoji.ipadic.Token;
 import com.atilika.kuromoji.ipadic.Tokenizer;
-import Model.Lexicon.Decoder.Decoder;
 
 import java.util.List;
 
-public abstract class KuroDecoder<I, O> implements Decoder<I, O> {
+
+public abstract class KuruDecoder<I, O> implements Decoder<I, O>{
 	  private Tokenizer tokenizer;
 	  protected List<Token> getTokenized(String string){
 	  	 String ult = string.replace("\n", "").replace(" ", "");

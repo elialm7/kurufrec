@@ -4,17 +4,17 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder;
+package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory;
 
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp.JpFileDecoder;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp.JpFolderDecoder;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp.JpTextDecoder;
+import Model.Lexicon.Decoder.KuruDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.Imp.JpFileDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.Imp.JpFolderDecoder;
+import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.Imp.JpTextDecoder;
 import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Type.JpDecoderType;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
 
-public class JpDecoderBuilder {
-	 private JpDecoderBuilder(){}
-	 public static KuroDecoder BuildDecoder(JpDecoderType type){
+public class JpDecoderFactory {
+	 private JpDecoderFactory(){}
+	 public static KuruDecoder BuildDecoder(JpDecoderType type){
 	 	 if(type.equals(JpDecoderType.TEXT_TYPE)){
 	 	 	 return new JpTextDecoder();
 		 }else if (type.equals(JpDecoderType.FOLDER_TYPE)){

@@ -4,18 +4,18 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Builder.Imp;
+package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.Imp;
 
-import com.atilika.kuromoji.ipadic.Token;
 import Model.Folder.MyFolder;
-import Model.Lexicon.JapaneseLexicon.JpKuroDecoder.KuroDecoder;
+import Model.Lexicon.Decoder.KuruDecoder;
 import Model.Lexicon.JapaneseLexicon.JpWord.JpWord;
 import Model.Lexicon.JapaneseLexicon.JpWord.JpWordBuilder;
+import com.atilika.kuromoji.ipadic.Token;
 
 import java.io.File;
 import java.util.List;
 
-public class JpFileDecoder extends KuroDecoder<File, List<JpWord>> {
+public class JpFileDecoder extends KuruDecoder<File, List<JpWord>> {
 
 	 List<Token> tokens;
 	 @Override
