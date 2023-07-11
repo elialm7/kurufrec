@@ -75,8 +75,30 @@ public class JpWordBuilder {
 	 	 word.setReading(tk.getReading());
 	 	 word.setPronunciation(tk.getPronunciation());
 	 	 word.setRomaji(getRomaji(word.getReading()));
+	 	 word.setCharacters(getCharacters(theword));
 	 	 return word;
 	 }
+
+	 private static List<String> getCharacters(String word){
+	 	 List<String> characters = new ArrayList<>();
+	 	 for(int i = 0; i <  word.length(); i = word.offsetByCodePoints(i, 1)){
+	 	 	 String character = new String(Character.toChars(word.codePointAt(i)));
+	 	 	 characters.add(character);
+		 }
+		 return characters;
+	 }
+
+	 public static List<JpCharacterToken> getCharactersTokenfromWord(JpWord word){
+	 	 List<String> characters = word.getCharacters();
+	 	 List<JpCharacterToken> JpCharacterTokens = new ArrayList<>();
+	 	 for(String character: characters){
+	 	 	 JpCharacterTokenBuilder builder = new JpCharacterTokenBuilder();
+	 	 	 builder.withCharacter(character).withFrecuency(0);
+	 	 	 JpCharacterTokens.add(builder.build());
+		 }
+		 return JpCharacterTokens;
+	 }
+
 
 	 private static String getRomaji(String kana){
 	 	 //implementation goes here
