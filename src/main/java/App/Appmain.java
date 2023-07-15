@@ -5,12 +5,10 @@
  */
 package App;
 
-import Controller.MainWindowController;
+import Controller.MainWindowController.MainWindowController;
+import View.MainViewLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 
 public class Appmain extends Application {
@@ -24,14 +22,9 @@ public class Appmain extends Application {
 		this.StartMainWindow();
 	 }
 	 private void StartMainWindow(){
-		  try {
-		  		FXMLLoader mainwindowloader = new FXMLLoader(getClass().getResource("/main/mainwindow.fxml"));
-		  		MainWindowController windowController = new MainWindowController(this.mainwindowStage, mainwindowloader);
-			    windowController.startwindow();
-		  } catch (IOException e) {
-			   e.printStackTrace();
-			   //some sort of logging must be implemented
-		  }
+		  MainWindowController controller = new MainWindowController();
+		  MainViewLoader mainwindowloader = new MainViewLoader(mainwindowStage, controller);
+		  mainwindowloader.start();
 	 }
 
 }
