@@ -6,19 +6,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class MainViewLoader {
-
+	 private Logger logger = LogManager.getLogger(View.MainViewLoader.class);
 	 private String resourcepath = "/main/mainwindow.fxml";
 	 private String iconpath = "/Images/mainicon.png";
 	 private Stage MainWindowStage;
 	 private MainWindowController controller;
 	 public MainViewLoader(Stage stage, MainWindowController controller){
 	 	 if(Objects.isNull(stage) || Objects.isNull(controller))
-	 	 	 throw new NullPointerException("Controller nor stage cannot be null.");
+	 	 	 throw new NullPointerException("Controller or stage cannot be null.");
 	 	 this.MainWindowStage = stage;
 	 	 this.controller = controller;
 	 }
@@ -33,7 +35,7 @@ public class MainViewLoader {
 		  	 MainWindowStage.getIcons().add(new Image(iconpath));
 		  	 MainWindowStage.show();
 		  } catch (IOException e) {
-			   e.printStackTrace();
+			   logger.fatal("An excepcion occurred at loading stage", e);
 		  }
 	 }
 
