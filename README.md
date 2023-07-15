@@ -3,7 +3,7 @@
    Status: In development...
 ```
 
-##Input Example
+### Input Example
 
 ```text
     終電はもうないよこれからどうしようかなんて迷い込みたいな二人で
@@ -12,7 +12,7 @@
     ほらいつまでも変わらないままであの頃は子供だったねと割り切るには
     ....
 ```
-## Output Example
+### Output Example
 
  ```text
  the amount of words: 99
