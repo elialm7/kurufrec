@@ -1,6 +1,6 @@
 # kuru_indexer
-   This a small tool I made for creating a japanese frecuency list. <br>
-   The code is still pretty immature, but it will evolve...   
+   A tool for creating frecuency list for the japanese language.
+   Status: In development...
 ```
 
 ##Input Example
@@ -38,10 +38,6 @@
  .....
  ```
  
- ### Sreenshots
- This GUI APP is still in development before I can upload the final release.
- ![](https://i.ibb.co/8b2th26/image.png)
-
 
  The text example taken for this one: <br>
  - Song Artist: Ayase  - 夜撫でるメノウ
