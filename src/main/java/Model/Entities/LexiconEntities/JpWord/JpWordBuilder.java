@@ -4,8 +4,10 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.JapaneseLexicon.JpWord;
+package Model.Entities.LexiconEntities.JpWord;
 
+import Model.Entities.LexiconEntities.JpCharacter.JpCharacterToken;
+import Model.Entities.LexiconEntities.JpCharacter.JpCharacterTokenBuilder;
 import com.atilika.kuromoji.ipadic.Token;
 import com.moji4j.MojiConverter;
 import com.moji4j.MojiDetector;
