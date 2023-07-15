@@ -1,16 +1,13 @@
-package Controller;
+package Controller.MainWindowController;
 
 import Model.Folder.FileController;
 import Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier.JpFrecuencier;
-import Model.UIRepository.UITextRepository;
+import Model.Utilities.UIRepository.UITextRepository;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -48,20 +45,14 @@ public class MainWindowController implements Initializable {
 	 @FXML
 	 private Button AbtButton;
 
-	 private Stage windowstage;
-	 private FXMLLoader fxmlloader;
+	 private Stage windowStage;
 	 private FileController fileController;
-	 public MainWindowController(Stage windowstage, FXMLLoader fxmlloader){
-		this.windowstage = windowstage;
-		this.fxmlloader = fxmlloader;
+
+	 public MainWindowController(){
+
 	 }
-	 public void startwindow()throws IOException {
-	 	 this.fxmlloader.setController(this);
-	 	 this.windowstage.setScene(new Scene(this.fxmlloader.load()));
-	 	 this.windowstage.setResizable(false);
-	 	 this.windowstage.setTitle(UITextRepository.AppName +" "+UITextRepository.AppVersion);
-	 	 this.windowstage.getIcons().add(new Image("/Images/mainicon.png"));
-	 	 this.windowstage.show();
+	 public void setStage(Stage stage){
+	 	 windowStage = stage;
 	 }
 	 private void loaddependecies(){
 	 	 fileController = FileController.getInstance();
@@ -134,7 +125,7 @@ public class MainWindowController implements Initializable {
 	 private void OpenFileButtonAction(){
 		  //Open the file dialog and load the selected file onto the controller.
 		  FileChooser fileChooser = new FileChooser();
-		  File selectedFile =  fileChooser.showOpenDialog(this.windowstage);
+		  File selectedFile =  fileChooser.showOpenDialog(this.windowStage);
 		  if(Objects.isNull(selectedFile))return;
 		  this.fileController.loadFile(selectedFile);
 		  setUIStateAfterFileLoaded();
@@ -221,7 +212,6 @@ public class MainWindowController implements Initializable {
 			   e.printStackTrace();
 			   return false;
 		  }
-
 	 }
 
 	 private void DoFrecuencyButtonAction(){
@@ -246,7 +236,7 @@ public class MainWindowController implements Initializable {
 	 private void SaveAsButtonAction(){
 
 	 	 FileChooser SaveAs = new FileChooser();
-	 	 File selectedFile = SaveAs.showSaveDialog(this.windowstage);
+	 	 File selectedFile = SaveAs.showSaveDialog(this.windowStage);
 	 	 if(Objects.isNull(selectedFile))return;
 	 	 Task<Boolean> savetotask = new Task<>() {
 			  @Override
