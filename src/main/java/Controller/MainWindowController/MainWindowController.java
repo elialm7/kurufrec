@@ -2,6 +2,7 @@ package Controller.MainWindowController;
 
 import Model.Folder.FileController;
 import Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier.JpFrecuencier;
+import Model.Parallel.ThreadExecutor;
 import Model.Utilities.UIRepository.UITextRepository;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -10,14 +11,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MainWindowController implements Initializable {
 	 @FXML
@@ -47,6 +48,7 @@ public class MainWindowController implements Initializable {
 
 	 private Stage windowStage;
 	 private FileController fileController;
+	 private Logger logger = LogManager.getLogger(MainWindowController.class);
 
 	 public MainWindowController(){
 
@@ -209,7 +211,7 @@ public class MainWindowController implements Initializable {
 			   bufferedWriter.close();
 			   return true;
 		  } catch (IOException e) {
-			   e.printStackTrace();
+			   logger.fatal("An exception occured when the file was being written..", e);
 			   return false;
 		  }
 	 }
@@ -231,7 +233,7 @@ public class MainWindowController implements Initializable {
 		  };
 		  frecuencyTask.runningProperty().addListener((observableValue, aBoolean, runningstate) ->UpdateFrecuencyTaskUI(runningstate) );
 		  frecuencyTask.setOnSucceeded(workerStateEvent ->setFrecuencyTaskUIOnSucceed(frecuencyTask));
-		  CallThreadExecutor(frecuencyTask);
+		  ThreadExecutor.execute(frecuencyTask);
 	 }
 	 private void SaveAsButtonAction(){
 
@@ -246,13 +248,7 @@ public class MainWindowController implements Initializable {
 		 };
 	 	 savetotask.runningProperty().addListener((observableValue, aBoolean, runningState) -> UpdateWritingOnFileTask(runningState));
 	 	 savetotask.setOnSucceeded(workerStateEvent -> UpdateLeftStatus(UITextRepository.PathText+selectedFile.getAbsolutePath()));
-	 	 CallThreadExecutor(savetotask);
-	 }
-
-	 private void CallThreadExecutor(Task tasktobeCalled){
-		  ExecutorService threadservice = Executors.newSingleThreadExecutor();
-		  threadservice.submit(tasktobeCalled);
-		  threadservice.shutdown();
+	 	 ThreadExecutor.execute(savetotask);
 	 }
 
 	 @Override
