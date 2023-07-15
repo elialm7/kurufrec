@@ -1,4 +1,4 @@
-package Model.UIRepository;
+package Model.Utilities.UIRepository;
 
 public class UITextRepository {
 

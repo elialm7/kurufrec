@@ -8,6 +8,7 @@
 package Model.Lexicon.JapaneseLexicon.JpWord;
 
 
+import java.util.List;
 import java.util.Objects;
 
 public class JpWord{
@@ -19,7 +20,13 @@ public class JpWord{
 	private int weigh;
 	private int frecuency;
 	private String index;
-
+	private List<String> Characters;
+	public List<String> getCharacters(){
+		 return Characters;
+	}
+	public void setCharacters(List<String> characters){
+		 this.Characters = characters;
+	}
 	 public String getWord() {
 		  return word;
 	 }
