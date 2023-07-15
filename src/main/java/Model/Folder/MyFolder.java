@@ -6,6 +6,9 @@
 
 package Model.Folder;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +20,7 @@ import java.util.Optional;
 
 public class MyFolder {
 	 //returns empty if there are no files in the folder
+	 private static Logger logger = LogManager.getLogger(MyFolder.class);
 	 public static Optional<List<File>> getFilePathList(File rootfolder){
 		  List<File> all_files = new ArrayList<>();
 		  getFolderFilesList(rootfolder, all_files); // a recursive method which laods the path of files in the given array.
@@ -48,7 +52,7 @@ public class MyFolder {
 			   }
 			   br.close();
 		  }catch(IOException e){
-			e.printStackTrace();
+			logger.fatal("An excepcion ocurrer when the file was being read.", e);
 		  }
 		  return sb.toString();
 	 }
@@ -67,7 +71,7 @@ public class MyFolder {
 			   jarfile= new  File(cs.getLocation().toURI().getPath());
 			   return jarfile.getParentFile();
 		  } catch (URISyntaxException e) {
-			   e.printStackTrace();
+		  	 logger.fatal("An exception occurred when getting the jafile", e);
 		  }
 		  return jarfile;
 	 }
