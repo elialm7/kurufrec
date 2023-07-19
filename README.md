@@ -3,7 +3,7 @@
    this tool utilizes the [KuroMoji](https://github.com/atilika/kuromoji) for the  Japanese morphological analysis.
    This is a basic tool. And mainly one I needed for my personal needs. So use it at your own risk.
 ```
-### Screenshot
+
 ![Image](https://ibb.co/Jq2gh25)
 
 ### Requisites to run the app
