@@ -5,12 +5,12 @@
 ```
 ### Screenshot
 ![](https://i.ibb.co/8b2th26/image.png)
-### Input Example
-###Requisites to run the app
+
+### Requisites to run the app
 - Java 11 JRE.  
 - The .Jar already has all the dependencies. 
 
-
+### Input Example
 ```text
     終電はもうないよこれからどうしようかなんて迷い込みたいな二人で
     終点なんてないの明日の事なんてほら今は考えないでよね
