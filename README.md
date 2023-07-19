@@ -1,9 +1,14 @@
 # kuru_indexer
-   A tool for creating frecuency list for the japanese language.
-   Status: In development...
+   A tool for creating frecuency list for the japanese language. 
+   this tool utilizes the [KuroMoji](https://github.com/atilika/kuromoji) for the  Japanese morphological analysis.
+   This is a basic tool. And mainly one I needed for my personal needs. So use it at your own risk.
 ```
-
+### Screenshot
+![](https://i.ibb.co/8b2th26/image.png)
 ### Input Example
+###Requisites to run the app
+- Java 11 JRE. 
+- The .Jar already has all the dependencies. 
 
 ```text
     終電はもうないよこれからどうしようかなんて迷い込みたいな二人で
