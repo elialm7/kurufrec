@@ -6,9 +6,9 @@
 
 package Model.Lexicon.JapaneseLexicon.JpKuroDecoder.Factory.Imp;
 
+import Model.DataAccess.Folder.MyFolder;
 import Model.Entities.LexiconEntities.JpWord.JpWord;
 import Model.Entities.LexiconEntities.JpWord.JpWordBuilder;
-import Model.Folder.MyFolder;
 import Model.Lexicon.Decoder.KuruDecoder;
 import com.atilika.kuromoji.ipadic.Token;
 

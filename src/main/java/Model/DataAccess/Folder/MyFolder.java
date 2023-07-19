@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Folder;
+package Model.DataAccess.Folder;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
