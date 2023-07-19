@@ -2,9 +2,9 @@
    A tool for creating frecuency list for the japanese language. 
    this tool utilizes the [KuroMoji](https://github.com/atilika/kuromoji) for the  Japanese morphological analysis.
    This is a basic tool. And mainly one I needed for my personal needs. 
-```
-##Sreenshots
- ![](https://i.ibb.co/8b2th26/image.png)
+
+## Sreenshots
+ ![ ](https://i.ibb.co/8b2th26/image.png)
 
 ### Requisites to run the app
 - Java 11 JRE.  
