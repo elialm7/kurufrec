@@ -4,7 +4,7 @@
    This is a basic tool. And mainly one I needed for my personal needs. So use it at your own risk.
 ```
 ### Screenshot
-![](https://i.ibb.co/8b2th26/image.png)
+![Image](https://i.ibb.co/8b2th26/image.png)
 
 ### Requisites to run the app
 - Java 11 JRE.  
