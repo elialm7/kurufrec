@@ -1,8 +1,7 @@
 package Controller.MainWindowController;
-
-import Model.Folder.FileController;
+import Model.DataAccess.Folder.FileController;
 import Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier.JpFrecuencier;
-import Model.Parallel.ThreadExecutor;
+import Model.Parallel.ThreadExecutor.ThreadExecutor;
 import Model.Utilities.UIRepository.UITextRepository;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -54,32 +53,32 @@ public class MainWindowController implements Initializable {
 
 	 }
 	 public void setStage(Stage stage){
-	 	 windowStage = stage;
+		  windowStage = stage;
 	 }
 	 private void loaddependecies(){
-	 	 fileController = FileController.getInstance();
+		  fileController = FileController.getInstance();
 	 }
 	 private void setInitialstates(){
-	 	 this.OpenButton.setDisable(false);
-	 	 this.QuitButton.setDisable(false);
-	 	 this.ClearButton.setDisable(false);
-	 	 this.DoFrButton.setDisable(true);
-	 	 this.SaveAsButton.setDisable(true);
-	 	 this.RawFileTextField.setDisable(true);
-	 	 this.ProcessedFileTextField.setDisable(true);
-	 	 this.LefStatus.setText("");
-	 	 this.RightStatus.setText("");
-	 	 this.ProcessProgressBar.setVisible(false);
-	 	 this.checkFromTextArea.setSelected(false);
+		  this.OpenButton.setDisable(false);
+		  this.QuitButton.setDisable(false);
+		  this.ClearButton.setDisable(false);
+		  this.DoFrButton.setDisable(true);
+		  this.SaveAsButton.setDisable(true);
+		  this.RawFileTextField.setDisable(true);
+		  this.ProcessedFileTextField.setDisable(true);
+		  this.LefStatus.setText("");
+		  this.RightStatus.setText("");
+		  this.ProcessProgressBar.setVisible(false);
+		  this.checkFromTextArea.setSelected(false);
 	 }
 	 private void setButtonsEvents(){
-	 	 this.OpenButton.setOnAction(actionEvent -> OpenFileButtonAction());
-	 	 this.QuitButton.setOnAction(actionEvent -> QuitButtonAction());
-	 	 this.ClearButton.setOnAction(actionEvent -> ClearButtonAction());
-	 	 this.DoFrButton.setOnAction(actionEvent -> DoFrecuencyButtonAction());
-	 	 this.SaveAsButton.setOnAction(actionEvent -> SaveAsButtonAction());
-	 	 this.AbtButton.setOnAction(actionEvent -> AbtButtonAction());
-	 	 this.checkFromTextArea.selectedProperty().addListener((observableValue, aBoolean, t1) -> CheckBoxListener(t1));
+		  this.OpenButton.setOnAction(actionEvent -> OpenFileButtonAction());
+		  this.QuitButton.setOnAction(actionEvent -> QuitButtonAction());
+		  this.ClearButton.setOnAction(actionEvent -> ClearButtonAction());
+		  this.DoFrButton.setOnAction(actionEvent -> DoFrecuencyButtonAction());
+		  this.SaveAsButton.setOnAction(actionEvent -> SaveAsButtonAction());
+		  this.AbtButton.setOnAction(actionEvent -> AbtButtonAction());
+		  this.checkFromTextArea.selectedProperty().addListener((observableValue, aBoolean, t1) -> CheckBoxListener(t1));
 	 }
 	 private void setUIStateAfterFileLoaded(){
 		  this.OpenButton.setDisable(false);
@@ -110,19 +109,19 @@ public class MainWindowController implements Initializable {
 		  this.ProcessedFileTextField.setDisable(true);
 	 }
 	 private void UpdateLeftStatus(String context){
-	 	 this.LefStatus.setText(context);
+		  this.LefStatus.setText(context);
 	 }
 	 private void UpdateRightStatus(String context){
-	 	 this.RightStatus.setText(context);
+		  this.RightStatus.setText(context);
 	 }
 	 private void UpdateRawTextField(String text){
-	 	 this.RawFileTextField.setText(text);
+		  this.RawFileTextField.setText(text);
 	 }
 	 private void UpdateProcessedTextField(String text){
-	 	 this.ProcessedFileTextField.setText(text);
+		  this.ProcessedFileTextField.setText(text);
 	 }
 	 private void UpdateVisibiltyProgressBar(boolean visibility){
-	 	 this.ProcessProgressBar.setVisible(visibility);
+		  this.ProcessProgressBar.setVisible(visibility);
 	 }
 	 private void OpenFileButtonAction(){
 		  //Open the file dialog and load the selected file onto the controller.
@@ -139,37 +138,37 @@ public class MainWindowController implements Initializable {
 		  Platform.exit();
 	 }
 	 private void AbtButtonAction(){
-			Alert Info= new Alert(Alert.AlertType.INFORMATION);
-			Info.setHeaderText(UITextRepository.AboutTextHeader);
-			Info.setContentText(UITextRepository.AboutTextContent);
-			Info.showAndWait();
+		  Alert Info= new Alert(Alert.AlertType.INFORMATION);
+		  Info.setHeaderText(UITextRepository.AboutTextHeader);
+		  Info.setContentText(UITextRepository.AboutTextContent);
+		  Info.showAndWait();
 	 }
 	 private void CheckBoxListener(boolean state){
-	 	 if(state){
-	 	 	 UpdateLeftStatus(UITextRepository.TextAreaPreferred);
-	 	 	 UpdateRightStatus("");
-	 	 	 this.RawFileTextField.setDisable(false);
-	 	 	 this.DoFrButton.setDisable(false);
-		 }else{
-	 	 	 if(!fileController.isloaded()){
-				  UpdateLeftStatus(UITextRepository.FileTobeLoadedPreferred);
-				  this.DoFrButton.setDisable(true);
-	 	 	 	 return;
-	 	 	 }
-	 	 	 UpdateLeftStatus(UITextRepository.LoadedFilePreferred);
-	 	 	 UpdateRightStatus(this.fileController.getFilename()+UITextRepository.isloadedText);
-		 }
+		  if(state){
+			   UpdateLeftStatus(UITextRepository.TextAreaPreferred);
+			   UpdateRightStatus("");
+			   this.RawFileTextField.setDisable(false);
+			   this.DoFrButton.setDisable(false);
+		  }else{
+			   if(!fileController.isloaded()){
+					UpdateLeftStatus(UITextRepository.FileTobeLoadedPreferred);
+					this.DoFrButton.setDisable(true);
+					return;
+			   }
+			   UpdateLeftStatus(UITextRepository.LoadedFilePreferred);
+			   UpdateRightStatus(this.fileController.getFilename()+UITextRepository.isloadedText);
+		  }
 	 }
 	 private void ClearButtonAction(){
-	 	 Alert clearAlert = new Alert(Alert.AlertType.WARNING);
-	 	 clearAlert.setContentText(UITextRepository.ClearAlertContentText);
-	 	 UpdateLeftStatus(UITextRepository.WarningText);
-	 	 UpdateRightStatus("");
-	 	 clearAlert.showAndWait();
-	 	 this.fileController.clear();
-	 	 UpdateRawTextField("");
-	 	 UpdateProcessedTextField("");
-	 	 setInitialstates();
+		  Alert clearAlert = new Alert(Alert.AlertType.WARNING);
+		  clearAlert.setContentText(UITextRepository.ClearAlertContentText);
+		  UpdateLeftStatus(UITextRepository.WarningText);
+		  UpdateRightStatus("");
+		  clearAlert.showAndWait();
+		  this.fileController.clear();
+		  UpdateRawTextField("");
+		  UpdateProcessedTextField("");
+		  setInitialstates();
 	 }
 	 private String FrecuencyTaskOperation(){
 		  JpFrecuencier frecuencier;
@@ -217,14 +216,14 @@ public class MainWindowController implements Initializable {
 	 }
 
 	 private void DoFrecuencyButtonAction(){
-	 	 if(this.checkFromTextArea.isSelected() && this.RawFileTextField.getText().isEmpty()){
-	 	 	 Alert EmptyRawTextArea = new Alert(Alert.AlertType.WARNING);
-	 	 	 EmptyRawTextArea.setContentText(UITextRepository.TextAreaEmptyText);
-	 	 	 EmptyRawTextArea.showAndWait();
-	 	 	 UpdateLeftStatus(UITextRepository.HintChooseFileFillText);
-	 	 	 return;
-		 }
-	 	  blockUIoptions();
+		  if(this.checkFromTextArea.isSelected() && this.RawFileTextField.getText().isEmpty()){
+			   Alert EmptyRawTextArea = new Alert(Alert.AlertType.WARNING);
+			   EmptyRawTextArea.setContentText(UITextRepository.TextAreaEmptyText);
+			   EmptyRawTextArea.showAndWait();
+			   UpdateLeftStatus(UITextRepository.HintChooseFileFillText);
+			   return;
+		  }
+		  blockUIoptions();
 		  Task<String> frecuencyTask = new Task<>() {
 			   @Override
 			   protected String call() throws Exception {
@@ -237,18 +236,18 @@ public class MainWindowController implements Initializable {
 	 }
 	 private void SaveAsButtonAction(){
 
-	 	 FileChooser SaveAs = new FileChooser();
-	 	 File selectedFile = SaveAs.showSaveDialog(this.windowStage);
-	 	 if(Objects.isNull(selectedFile))return;
-	 	 Task<Boolean> savetotask = new Task<>() {
-			  @Override
-			  protected Boolean call() throws Exception {
-				   return WriteOnFile(selectedFile);
-			  }
-		 };
-	 	 savetotask.runningProperty().addListener((observableValue, aBoolean, runningState) -> UpdateWritingOnFileTask(runningState));
-	 	 savetotask.setOnSucceeded(workerStateEvent -> UpdateLeftStatus(UITextRepository.PathText+selectedFile.getAbsolutePath()));
-	 	 ThreadExecutor.execute(savetotask);
+		  FileChooser SaveAs = new FileChooser();
+		  File selectedFile = SaveAs.showSaveDialog(this.windowStage);
+		  if(Objects.isNull(selectedFile))return;
+		  Task<Boolean> savetotask = new Task<>() {
+			   @Override
+			   protected Boolean call() throws Exception {
+					return WriteOnFile(selectedFile);
+			   }
+		  };
+		  savetotask.runningProperty().addListener((observableValue, aBoolean, runningState) -> UpdateWritingOnFileTask(runningState));
+		  savetotask.setOnSucceeded(workerStateEvent -> UpdateLeftStatus(UITextRepository.PathText+selectedFile.getAbsolutePath()));
+		  ThreadExecutor.execute(savetotask);
 	 }
 
 	 @Override
