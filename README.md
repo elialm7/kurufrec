@@ -7,8 +7,9 @@
 ![](https://i.ibb.co/8b2th26/image.png)
 ### Input Example
 ###Requisites to run the app
-- Java 11 JRE. 
+- Java 11 JRE.  
 - The .Jar already has all the dependencies. 
+
 
 ```text
     終電はもうないよこれからどうしようかなんて迷い込みたいな二人で
