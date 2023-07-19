@@ -4,7 +4,7 @@
    This is a basic tool. And mainly one I needed for my personal needs. So use it at your own risk.
 ```
 ### Screenshot
-![Image](https://i.ibb.co/8b2th26/image.png)
+![Image](https://ibb.co/Jq2gh25)
 
 ### Requisites to run the app
 - Java 11 JRE.  
