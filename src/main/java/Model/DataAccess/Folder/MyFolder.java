@@ -6,6 +6,8 @@
 
 package Model.DataAccess.Folder;
 
+import Model.Error.ErrorType;
+import Model.Error.KuruException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,13 +23,10 @@ import java.util.Optional;
 public class MyFolder {
 	 //returns empty if there are no files in the folder
 	 private static Logger logger = LogManager.getLogger(MyFolder.class);
-	 public static Optional<List<File>> getFilePathList(File rootfolder){
+	 public static List<File> getFilePathList(File rootfolder){
 		  List<File> all_files = new ArrayList<>();
 		  getFolderFilesList(rootfolder, all_files); // a recursive method which laods the path of files in the given array.
-		  if(all_files.size()>0){
-		  	 return Optional.of(all_files);
-		  }
-		  return Optional.empty();
+		 return all_files;
 	 }
 	 private static void getFolderFilesList(File path, List<File> arraylist) {
 		  File root = path;
@@ -75,4 +74,15 @@ public class MyFolder {
 		  }
 		  return jarfile;
 	 }
+
+	 public static void writeOnFile(String result, File output){
+
+		 try {
+			 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8));
+			 bufferedWriter.write(result);
+			 bufferedWriter.close();
+		 } catch (IOException e) {
+			 throw new KuruException(e.getMessage(), ErrorType.EXTERNAL);
+         }
+     }
 }
