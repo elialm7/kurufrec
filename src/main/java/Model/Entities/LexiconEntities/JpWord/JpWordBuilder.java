@@ -17,7 +17,6 @@ import java.util.List;
 
 public class JpWordBuilder {
 
-	 public static final String NOT_ENGLISH_REGEX = "[^a-zA-Z]+";
 	 public static final String KURO_JP_NOUN_FILTER = "名詞";
 	 public static final String KURO_JP_VERB_FILTER = "動詞";
 	 public static final String KURO_JP_PARTICLE_FILTER = "助詞";
