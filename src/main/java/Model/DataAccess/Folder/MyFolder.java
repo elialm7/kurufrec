@@ -76,7 +76,6 @@ public class MyFolder {
 	 }
 
 	 public static void writeOnFile(String result, File output){
-
 		 try {
 			 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8));
 			 bufferedWriter.write(result);
