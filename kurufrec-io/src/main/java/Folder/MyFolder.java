@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.DataAccess.Folder;
+package DataAccess.Folder;
 
 import Model.Error.ErrorType;
 import Model.Error.KuruException;

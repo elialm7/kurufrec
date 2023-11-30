@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.Decoder;
+package Lexicon.Decoder;
 
 
 import com.atilika.kuromoji.ipadic.Token;

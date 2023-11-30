@@ -1,4 +1,4 @@
-package Model.Entities.LexiconEntities.JpCharacter;
+package LexiconEntities.JpCharacter;
 
 public class JpCharacterTokenBuilder {
 

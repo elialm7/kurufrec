@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Lexicon.JapaneseLexicon.JpKuroFrecuencier;
+package Lexicon.JapaneseLexicon.JpKuroFrecuencier;
 
 import Model.Entities.LexiconEntities.JpCharacter.JpCharacterToken;
 import Model.Entities.LexiconEntities.JpWord.JpWord;

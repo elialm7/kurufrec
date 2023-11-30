@@ -1,4 +1,4 @@
-package Model.Lexicon.JpLexer;
+package Lexicon.JpLexer;
 
 import Model.DataAccess.Folder.MyFolder;
 import Model.Error.ErrorType;

@@ -5,7 +5,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Model.Entities.LexiconEntities.JpWord;
+package LexiconEntities.JpWord;
 
 
 import java.util.List;
