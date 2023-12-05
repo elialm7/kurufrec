@@ -4,12 +4,9 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package DataAccess.Folder;
+package Folder;
 
-import Model.Error.ErrorType;
-import Model.Error.KuruException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -18,11 +15,10 @@ import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class MyFolder {
 	 //returns empty if there are no files in the folder
-	 private static Logger logger = LogManager.getLogger(MyFolder.class);
+/*
 	 public static List<File> getFilePathList(File rootfolder){
 		  List<File> all_files = new ArrayList<>();
 		  getFolderFilesList(rootfolder, all_files); // a recursive method which laods the path of files in the given array.
@@ -83,5 +79,5 @@ public class MyFolder {
 		 } catch (IOException e) {
 			 throw new KuruException(e.getMessage(), ErrorType.EXTERNAL);
          }
-     }
+     }*/
 }
