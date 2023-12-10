@@ -6,7 +6,7 @@ import KanaConversion.KanaConversionFactory;
 public class KanaConversionKuruFactory implements KanaConversionFactory {
 
     @Override
-    public KanaConversion createKanaHelper() {
+    public KanaConversion createKanaConverter() {
         return  new KanaConversionKuru();
     }
 }
