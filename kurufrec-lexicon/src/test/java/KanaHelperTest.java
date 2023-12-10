@@ -12,7 +12,7 @@ public class KanaHelperTest {
 
     public KanaHelperTest(){
         KanaConversionFactory factory = new KanaConversionKuruFactory();
-        converter = factory.createKanaHelper();
+        converter = factory.createKanaConverter();
     }
 
     @Test
