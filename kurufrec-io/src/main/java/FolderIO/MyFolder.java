@@ -4,17 +4,8 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package Folder;
+package FolderIO;
 
-
-
-import java.io.*;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.security.CodeSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class MyFolder {
 	 //returns empty if there are no files in the folder
