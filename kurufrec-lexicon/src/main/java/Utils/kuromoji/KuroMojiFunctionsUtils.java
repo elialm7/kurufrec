@@ -13,19 +13,32 @@ public class KuroMojiFunctionsUtils {
 
     private KanaConversion conversionhelper;
 
-    public KuroMojiFunctionsUtils(KanaConversion conversionhelper){
+    private KuroMojiFunctionsUtils(KanaConversion conversionhelper){
         this.conversionhelper = conversionhelper;
     }
+
+    public static KuroMojiFunctionsUtils NewFunctionUtils(KanaConversion kanaConversion){
+        return new KuroMojiFunctionsUtils(kanaConversion);
+    }
+
     public  Word fromToken(Token tk){
         WordBuilder builder = new WordBuilder();
         builder.withContent(tk.getSurface())
                 .withReading(tk.getReading())
                 .withType(tk.getPartOfSpeechLevel1())
                 .withPronunciation(tk.getPronunciation())
-                .withRomaji(conversionhelper.kanaToRomaji(tk.getReading()))
+                .withRomaji(getRomaji(tk.getReading()))
                 .withFrecuency(0)
                 .withWeight(getWeight(tk.getPartOfSpeechLevel1()));
         return builder.build();
+    }
+
+    private String getRomaji(String input){
+        if(conversionhelper == null){
+            return "...";
+        }
+        return conversionhelper.kanaToRomaji(input);
+
     }
 
     public List<Word> fromTokens(List<Token> tokens){
