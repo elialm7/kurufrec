@@ -6,7 +6,7 @@
     <parent>
         <groupId>com</groupId>
         <artifactId>kuru</artifactId>
-        <version>alpha</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>org.elias</groupId>
@@ -17,7 +17,40 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>17</release>  <!--or <release>10</release>-->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>app.mainApp</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>kurufrec-cli</finalName>
+    </build>
     <dependencies>
         <dependency>
             <groupId>commons-cli</groupId>
@@ -30,9 +63,9 @@
             <version>5.5.1</version>
         </dependency>
         <dependency>
-            <groupId>org.elias</groupId>
-            <artifactId>kurufrec-io</artifactId>
-            <version>alpha</version>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.7.5</version>
         </dependency>
     </dependencies>
 
