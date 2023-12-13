@@ -55,7 +55,7 @@ public class FrecuencyGenerator {
             formattedString.append(currentword.getReading()).append(",");
             formattedString.append(currentword.getRomaji()).append(",");
             formattedString.append(currentword.getFrecuency()).append("\n");
-
+            //added new comments
         }
         return formattedString.toString();
     }
