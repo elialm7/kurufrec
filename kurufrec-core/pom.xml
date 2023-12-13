@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com</groupId>
-        <artifactId>kuru</artifactId>
+        <artifactId>kurufrec</artifactId>
         <version>1.0.0</version>
     </parent>
 
@@ -17,5 +17,16 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.elias</groupId>
+            <artifactId>kurufrec-lexicon</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elias</groupId>
+            <artifactId>kurufrec-io</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 </project>

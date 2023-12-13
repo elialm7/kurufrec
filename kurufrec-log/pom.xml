@@ -9,26 +9,13 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>org.elias</groupId>
-    <artifactId>kurufrec-lexicon</artifactId>
+    <groupId>org.example</groupId>
+    <artifactId>kurufrec-log</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.atilika.kuromoji</groupId>
-            <artifactId>kuromoji-ipadic</artifactId>
-            <version>0.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.andree-surya</groupId>
-            <artifactId>moji4j</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-    </dependencies>
 
 </project>
