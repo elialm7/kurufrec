@@ -48,10 +48,5 @@
             <artifactId>javafx-web</artifactId>
             <version>11.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.elias</groupId>
-            <artifactId>kurufrec-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
 </project>
