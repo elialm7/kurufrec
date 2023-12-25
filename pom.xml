@@ -11,8 +11,6 @@
     <modules>
         <module>kurufrec-lexicon</module>
         <module>kurufrec-io</module>
-        <module>kurufrec-core</module>
-        <module>kurufrec-log</module>
         <module>kurufrec-gui</module>
     </modules>
     <properties>
