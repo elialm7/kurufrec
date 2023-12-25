@@ -7,8 +7,10 @@ public class KuroTextAnalyzerBuilder {
     private String content;
     private KanaConversion converter;
 
-    private boolean searchmode = false;
-    private boolean extendedmode = false;
+    private KuroTextAnalyzer.TextAnalyzerMode mode;
+
+    private boolean allowNakaguroSplit = false;
+
     private KuroTextAnalyzerBuilder(String input){
         this.content = input;
     }
@@ -20,8 +22,17 @@ public class KuroTextAnalyzerBuilder {
         this.converter = converter;
         return this;
     }
+    public KuroTextAnalyzerBuilder withMode(KuroTextAnalyzer.TextAnalyzerMode mode){
+        this.mode = mode;
+        return this;
+    }
+
+    public KuroTextAnalyzerBuilder withNakaguroSplit(boolean split){
+        this.allowNakaguroSplit = split;
+        return this;
+    }
     public KuroTextAnalyzer build(){
-        return new KuroTextAnalyzer(content, converter);
+        return new KuroTextAnalyzer(content, converter, mode, allowNakaguroSplit);
     }
 
 
