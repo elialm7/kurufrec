@@ -29,11 +29,6 @@ public class KuroTextAnalyzer implements TextAnalyzer<Word> {
          this.allowNakaguroSplit = allowNakaguroSplit;
     }
 
-
-    private void useDefaultKanaConverter(){
-
-    }
-
     private Tokenizer defaultTokenizer(){
          return new Tokenizer();
     }
