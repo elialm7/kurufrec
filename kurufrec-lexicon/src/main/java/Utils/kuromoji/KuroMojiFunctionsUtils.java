@@ -1,5 +1,6 @@
 package Utils.kuromoji;
 
+import KanaConversion.Imp.KanaConversionKuruFactory;
 import KanaConversion.KanaConversion;
 import TextEntities.Word.Word;
 import TextEntities.Word.WordBuilder;
@@ -19,6 +20,11 @@ public class KuroMojiFunctionsUtils {
 
     public static KuroMojiFunctionsUtils NewFunctionUtils(KanaConversion kanaConversion){
         return new KuroMojiFunctionsUtils(kanaConversion);
+    }
+
+    public static KuroMojiFunctionsUtils NewFunctionUtils(){
+        KanaConversion defaultConverter = new KanaConversionKuruFactory().createKanaConverter();
+        return new KuroMojiFunctionsUtils(defaultConverter);
     }
 
     public  Word fromToken(Token tk){
