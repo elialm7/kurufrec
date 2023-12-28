@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WordFrecuencier implements Frecuencier<Word> {
+public class WordFrecuencier extends Frecuencier<Word> {
 
     private TextAnalyzer<Word> analyzer;
     private Map<Word, Integer> frecuencies;
@@ -42,9 +42,12 @@ public class WordFrecuencier implements Frecuencier<Word> {
     @Override
     public List<Word> doFrecuency() {
          if(analyzer == null) throw new IllegalArgumentException("The TextAnalyzer is not provided. Provide a TextAnalyzer instance. ");
+         callupdate("Starting analisis from kuromoji", "Class initiliazed");
         List<Word> words = analyzer.analyze();
+        callupdate("Performing frecuency.", "Starting analisis from kuromoji");
         addWordtoMap(words);
         List<Word> wordsresults = new ArrayList<>();
+        callupdate("Creating results. ", "Performing frecuency.");
         createResultList(wordsresults);
         return wordsresults;
     }

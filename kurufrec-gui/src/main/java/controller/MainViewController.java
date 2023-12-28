@@ -7,6 +7,7 @@ import TextAnalyzer.Imp.KuroTextAnalyzerBuilder;
 import TextAnalyzer.TextAnalyzer;
 import TextEntities.Word.Word;
 import TextFrecuencier.Frecuencier;
+import TextFrecuencier.FrecuencyObservers.FrecuencyObserver;
 import TextFrecuencier.WordFrecuencier.WordFrecuencierBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,7 +49,7 @@ public class MainViewController implements Initializable {
         this.mainViewStage = st;
     }
     private void openFile(){
-
+        this.LogArea.clear();
         FileChooser chooser = new FileChooser();
         File selectedFile = chooser.showOpenDialog(mainViewStage);
         if(selectedFile == null)return;
@@ -95,12 +96,12 @@ public class MainViewController implements Initializable {
         this.LogArea.appendText(infoTextFormat("file saved to: "+jpFile.getAbsolutePath())+"\n");
     }
     private void startFrecuency(){
-        this.LogArea.clear();
         try {
             this.LogArea.appendText(infoTextFormat("Preparing objects...")+"\n");
             SimpleFileReader reader = new SimpleFileReader(this.jpFile);
-            TextAnalyzer<Word> analyzer = KuroTextAnalyzerBuilder.builder(reader.readContent()).withKanaConverter(new KanaConversionKuruFactory().createKanaConverter()).build();
+            TextAnalyzer<Word> analyzer = KuroTextAnalyzerBuilder.builder(reader.readContent()).build();
             Frecuencier<Word> frecuencier = WordFrecuencierBuilder.builder().withAnalyzer(analyzer).build();
+            frecuencier.addObserver((currentState, LastState) -> LogArea.appendText(infoTextFormat("Current state: "+currentState)+"\n"));
             this.LogArea.appendText(infoTextFormat("Doing frecuency...")+"\n");
             List<Word> results = frecuencier.doFrecuency();
             savetoFile(results);
