@@ -1,12 +1,16 @@
-package TextFrecuencier;
+package TextFrecuencier.FrecuencyStrategy;
 
 import TextFrecuencier.FrecuencyObservers.FrecuencyObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Frecuencier<T>{
+public abstract class FrecuencyStrategy<T>{
 
+
+    public enum State{
+        PREPARING,READY,EXECUTING,FAILED,FINISHING, FINISHED
+    }
 
     private List<FrecuencyObserver> observers = new ArrayList<>();
 
@@ -21,13 +25,11 @@ public abstract class Frecuencier<T>{
         observers.remove(observer);
     }
 
-
-    public void callupdate(String currentState, String lastState){
-        for(FrecuencyObserver obs: observers){
-            obs.update(currentState, lastState);
-        }
+    public void notifyObservers(FrecuencyStrategy.State state, String message){
+        if(observers.isEmpty()) return;
+        observers.forEach(obs -> obs.update(state, message));
     }
 
-    public abstract List<T> doFrecuency();
+    public abstract List<T> executeStrategy();
 
 }

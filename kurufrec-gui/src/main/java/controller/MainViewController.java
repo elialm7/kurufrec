@@ -2,15 +2,12 @@ package controller;
 
 import FileIO.in.imp.SimpleFileReader;
 import FileIO.out.imp.SimpleFileWriter;
-import KanaConversion.Imp.KanaConversionKuruFactory;
 import TextAnalyzer.Imp.KuroTextAnalyzerBuilder;
 import TextAnalyzer.TextAnalyzer;
 import TextEntities.Word.Word;
-import TextFrecuencier.Frecuencier;
-import TextFrecuencier.FrecuencyObservers.FrecuencyObserver;
-import TextFrecuencier.WordFrecuencier.WordFrecuencierBuilder;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import TextFrecuencier.FrecuencierContext.Frecuencier;
+import TextFrecuencier.FrecuencyStrategy.FrecuencyStrategy;
+import TextFrecuencier.FrecuencyStrategy.WordFrecuencier.WordFrecuencyStrategy;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -100,10 +97,12 @@ public class MainViewController implements Initializable {
             this.LogArea.appendText(infoTextFormat("Preparing objects...")+"\n");
             SimpleFileReader reader = new SimpleFileReader(this.jpFile);
             TextAnalyzer<Word> analyzer = KuroTextAnalyzerBuilder.builder(reader.readContent()).build();
-            Frecuencier<Word> frecuencier = WordFrecuencierBuilder.builder().withAnalyzer(analyzer).build();
-            frecuencier.addObserver((currentState, LastState) -> LogArea.appendText(infoTextFormat("Current state: "+currentState)+"\n"));
+            FrecuencyStrategy<Word> frecuencyStrategy = new WordFrecuencyStrategy(analyzer);
+            frecuencyStrategy.addObserver(( state, message) -> LogArea.appendText(infoTextFormat( state.toString()+ ": "+message)+"\n"));
+            Frecuencier<Word> frecuencierContext = new Frecuencier<>();
+            frecuencierContext.setStrategy(frecuencyStrategy);
             this.LogArea.appendText(infoTextFormat("Doing frecuency...")+"\n");
-            List<Word> results = frecuencier.doFrecuency();
+            List<Word> results = frecuencierContext.doFrecuency();
             savetoFile(results);
         }catch (IOException e){
             this.LogArea.appendText(errorTextFormat(e.getMessage()));

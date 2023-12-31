@@ -1,7 +1,10 @@
 package TextFrecuencier.FrecuencyObservers;
 
+import TextFrecuencier.FrecuencyStrategy.FrecuencyStrategy;
+
 public interface FrecuencyObserver {
 
-    void update(String currentState, String LastState);
+    void update(FrecuencyStrategy.State state, String message);
+
 
 }
