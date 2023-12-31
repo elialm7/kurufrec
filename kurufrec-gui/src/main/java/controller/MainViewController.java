@@ -5,7 +5,7 @@ import FileIO.out.imp.SimpleFileWriter;
 import TextAnalyzer.Imp.KuroTextAnalyzerBuilder;
 import TextAnalyzer.TextAnalyzer;
 import TextEntities.Word.Word;
-import TextFrecuencier.FrecuencierContext.Frecuencier;
+import TextFrecuencier.Frecuencier.Frecuencier;
 import TextFrecuencier.FrecuencyStrategy.FrecuencyStrategy;
 import TextFrecuencier.FrecuencyStrategy.WordFrecuencier.WordFrecuencyStrategy;
 import javafx.fxml.FXML;

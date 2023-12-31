@@ -1,4 +1,4 @@
-package TextFrecuencier.FrecuencierContext;
+package TextFrecuencier.Frecuencier;
 import java.util.List;
 import TextFrecuencier.FrecuencyStrategy.FrecuencyStrategy;
 
