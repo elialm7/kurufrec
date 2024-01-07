@@ -1,13 +1,11 @@
-package TextFrecuencier.WordFrecuencier;
+package TextFrecuencier.FrecuencyStrategy.WordFrecuencier;
 
-import KanaConversion.KanaConversion;
 import TextAnalyzer.TextAnalyzer;
 import TextEntities.Word.Word;
 
+@Deprecated
 public class WordFrecuencierBuilder {
     private TextAnalyzer<Word> analyzer;
-    private  KanaConversion converter;
-
     private WordFrecuencierBuilder(){}
 
     public static WordFrecuencierBuilder builder(){
@@ -20,8 +18,8 @@ public class WordFrecuencierBuilder {
         return this;
     }
 
-    public WordFrecuencier build(){
-        return new WordFrecuencier(analyzer);
+    public WordFrecuencyStrategy build(){
+        return new WordFrecuencyStrategy(analyzer);
     }
 
 
