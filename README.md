@@ -10,7 +10,7 @@ Kuru Frec is a lightweight tool designed for generating Japanese word frequencie
 ## How to Use
 
 - Download the zip file from the [Releases](https://github.com/your-username/your-repo/releases) section.
-- Run the `run.cmd` script. Ensure that you have Java 17 or a later version installed and configured in your system's path.
+- Run the `kurufre.cmd` script. Ensure that you have Java 17 or a later version installed and configured in your system's path.
 
 ## Contributions
 
