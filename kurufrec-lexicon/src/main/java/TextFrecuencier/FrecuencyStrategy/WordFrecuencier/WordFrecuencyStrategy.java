@@ -22,7 +22,12 @@ public class WordFrecuencyStrategy extends FrecuencyStrategy<Word> {
     }
 
     private void mapfrecuency(List<Word> wordListreference){
+         int maxsize = wordListreference.size();
+         int counter = 1;
+         updateProgress(counter, maxsize);
          for(Word currentWord: wordListreference){
+             updateProgress(counter, maxsize);
+             counter++;
              if(frecuencies.containsKey(currentWord)){
                  int frecuency = frecuencies.get(currentWord);
                  frecuencies.put(currentWord, frecuency+1);
@@ -42,20 +47,26 @@ public class WordFrecuencyStrategy extends FrecuencyStrategy<Word> {
 
     @Override
     public List<Word> executeStrategy() {
-         notifyObservers(State.PREPARING, "checking analyzer. ");
+        setChangedState(State.PREPARING);
+        updateMessage("Checking analyzer");
          if(analyzer == null) {
-             notifyObservers(State.FAILED, "there was no analyzer defined. throwing exception.");
+             setChangedState(State.FAILED);
+             updateMessage("The analyzer is not provided...");
              throw new IllegalArgumentException("The TextAnalyzer is not provided. Provide a TextAnalyzer instance. ");
          }
-        notifyObservers(State.READY, "Analyzer checked");
-         notifyObservers( State.EXECUTING, "Starting analysis.");
+         setChangedState(State.READY);
+         updateMessage("Analyzer checked!");
+         setChangedState(State.EXECUTING);
+         updateMessage("Starting Analysis of the Content");
         List<Word> words = analyzer.analyze();
-        notifyObservers(State.EXECUTING, "Starting frecuency operation. ");
+        updateMessage("Frecuency Operation has started... ");
         mapfrecuency(words);
         List<Word> wordsresults = new ArrayList<>();
-        notifyObservers( State.FINISHING, "Preparing Resulting list. ");
+        setChangedState(State.FINISHING);
+        updateMessage("Preparing results... ");
         createResultList(wordsresults);
-        notifyObservers(State.FINISHED, "Frecuency finished. ");
+        setChangedState(State.FINISHED);
+        updateMessage("Results are finished.");
         return wordsresults;
     }
 }

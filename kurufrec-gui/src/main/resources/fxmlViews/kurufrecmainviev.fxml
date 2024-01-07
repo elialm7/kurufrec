@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="titleLabel" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="204.0" text="Kuru  Frec v1.0.0 ">
@@ -22,12 +21,13 @@
       <Separator layoutX="16.0" layoutY="98.0" prefHeight="4.0" prefWidth="364.0" />
       <TextArea fx:id="LogArea" layoutX="19.0" layoutY="132.0" prefHeight="321.0" prefWidth="355.0" />
       <Button fx:id="openFileButton" layoutX="96.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Open File" />
-      <Label layoutX="19.0" layoutY="462.0" prefHeight="17.0" prefWidth="197.0" text="Developed by: R. Elias Ojeda" />
+      <Label layoutX="19.0" layoutY="462.0" prefHeight="17.0" prefWidth="158.0" text="Developed by: Elias O." />
       <Button fx:id="frecuencyStartButton" layoutX="178.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Start Frecuency" />
       <Label layoutX="23.0" layoutY="109.0" prefHeight="17.0" prefWidth="73.0" text="Logs" underline="true">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
+      <Label fx:id="statelabel" layoutX="181.0" layoutY="462.0" prefHeight="17.0" prefWidth="204.0" text="..." textAlignment="RIGHT" />
    </children>
 </Pane>

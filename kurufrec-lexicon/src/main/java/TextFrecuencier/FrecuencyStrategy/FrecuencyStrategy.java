@@ -13,8 +13,7 @@ public abstract class FrecuencyStrategy<T>{
     }
 
     private List<FrecuencyObserver> observers = new ArrayList<>();
-
-
+    private State state;
     public void addObserver(FrecuencyObserver observer){
         if(observers.contains(observer))return;
         this.observers.add(observer);
@@ -24,10 +23,18 @@ public abstract class FrecuencyStrategy<T>{
         if(!observers.contains(observer))return;
         observers.remove(observer);
     }
-
-    public void notifyObservers(FrecuencyStrategy.State state, String message){
+    public void updateProgress(int current, int max){
         if(observers.isEmpty()) return;
-        observers.forEach(obs -> obs.update(state, message));
+        observers.forEach(obs -> obs.updateProgress(current, max));
+    }
+
+    public void updateMessage(String message){
+        if(observers.isEmpty()) return;
+        observers.forEach(obs -> obs.updateMessage(state, message));
+    }
+
+    public void setChangedState(FrecuencyStrategy.State state){
+        this.state = state;
     }
 
     public abstract List<T> executeStrategy();
