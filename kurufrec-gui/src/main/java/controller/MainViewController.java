@@ -18,11 +18,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +47,7 @@ public class MainViewController implements Initializable {
     private Button openFileButton;
 
     @FXML
-    private Label titleLabel;
+    private CheckBox openfinishing;
 
     @FXML
     private Label statelabel;
@@ -85,7 +87,6 @@ public class MainViewController implements Initializable {
             builder.append(w.getContent() + ", " + w.getReading() + ", " + w.getRomaji() + ", " + w.getFrecuency());
             builder.append("\n");
         }
-        ;
 
         return builder.toString();
 
@@ -102,22 +103,30 @@ public class MainViewController implements Initializable {
         Path renamedFilePath = parentDir.resolve(newFileName);
         this.jpFile = renamedFilePath.toFile();
     }
-
     public void updateLogArea(String text) {
         Platform.runLater(() -> this.LogArea.appendText(text + "\n"));
-
     }
-
-
     public void updatStateLable(int current, int max){
         Platform.runLater(() -> this.statelabel.setText("Word: " + current + " of "+ max + " Words."));
-
     }
     private void savetoFile(List<Word> results) throws IOException {
         renamefile();
         SimpleFileWriter writer = new SimpleFileWriter(jpFile);
         writer.writeContent(contentBuilder(results));
-        this.LogArea.appendText(infoTextFormat("file saved to: " + jpFile.getAbsolutePath()) + "\n");
+        updateLogArea(infoTextFormat("file saved to: " + jpFile.getAbsolutePath()));
+        Openifselected();
+    }
+
+    private void Openifselected(){
+        if(this.openfinishing.isSelected()){
+            updateLogArea(infoTextFormat("Opening the file."));
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.browse(this.jpFile.toURI());
+            } catch (IOException e) {
+                updateLogArea(errorTextFormat("An error occurred while opening the file: "+ e.getMessage()));
+            }
+        }
     }
     private void startFrecuency(){
         Task<List<Word>> frecuencyTask = new Task<>() {
