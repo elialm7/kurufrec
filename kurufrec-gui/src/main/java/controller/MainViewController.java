@@ -23,6 +23,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.io.File;
@@ -36,6 +38,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainViewController implements Initializable {
+
+    private static Logger log = LogManager.getLogger(MainViewController.class);
 
     @FXML
     private TextArea LogArea;
@@ -61,10 +65,12 @@ public class MainViewController implements Initializable {
 
     private void openFile() {
         this.LogArea.clear();
+        log.info("Opening file selector.");
         FileChooser chooser = new FileChooser();
         File selectedFile = chooser.showOpenDialog(mainViewStage);
         if (selectedFile == null) {
             updateLogArea(infoTextFormat("No file selected... "));
+            log.info("No file selected.");
             return;
         }
         this.jpFile = selectedFile;
@@ -80,6 +86,7 @@ public class MainViewController implements Initializable {
     }
 
     private String contentBuilder(List<Word> words) {
+        log.debug("Building content string");
         StringBuilder builder = new StringBuilder();
         Iterator<Word> it = words.iterator();
         while (it.hasNext()) {
@@ -93,6 +100,7 @@ public class MainViewController implements Initializable {
     }
 
     private void renamefile() {
+        log.debug("renaming file");
         Path inputPath = jpFile.toPath();
         Path parentDir = inputPath.getParent();
         String originalFileName = inputPath.getFileName().toString();
@@ -111,6 +119,7 @@ public class MainViewController implements Initializable {
     }
     private void savetoFile(List<Word> results) throws IOException {
         renamefile();
+        log.debug("Saving file");
         SimpleFileWriter writer = new SimpleFileWriter(jpFile);
         writer.writeContent(contentBuilder(results));
         updateLogArea(infoTextFormat("file saved to: " + jpFile.getAbsolutePath()));
@@ -118,17 +127,20 @@ public class MainViewController implements Initializable {
     }
 
     private void Openifselected(){
+        log.debug("checking if the open after saving is selected.");
         if(this.openfinishing.isSelected()){
             updateLogArea(infoTextFormat("Opening the file."));
             Desktop desktop = Desktop.getDesktop();
             try {
                 desktop.browse(this.jpFile.toURI());
             } catch (IOException e) {
-                updateLogArea(errorTextFormat("An error occurred while opening the file: "+ e.getMessage()));
+                updateLogArea(errorTextFormat("An error occurred while opening the file, check logs."));
+                log.error("File can not be opened.", e);
             }
         }
     }
     private void startFrecuency(){
+        log.debug("setting up task for frecuencing. ");
         Task<List<Word>> frecuencyTask = new Task<>() {
             @Override
             protected List<Word> call() throws Exception {
@@ -140,11 +152,12 @@ public class MainViewController implements Initializable {
             try {
                 savetoFile(frecuencyTask.getValue());
             } catch (IOException e) {
-                updateLogArea(errorTextFormat(e.getMessage()));
-                throw new RuntimeException(e);
+                updateLogArea(errorTextFormat("File cannot be saved, check logs."));
+                log.error("File cannot be saved. ", e);
             }
         });
         ExecutorService service = Executors.newSingleThreadExecutor();
+        log.debug("submitting task for execution. ");
         service.submit(frecuencyTask);
         service.shutdown();
     }
@@ -152,6 +165,7 @@ public class MainViewController implements Initializable {
 
 
 	private Frecuencier<Word> prepareFrecuencier(String content){
+        log.debug("preparing classes for frecuencing. ");
         TextAnalyzer<Word> analyzer = KuroTextAnalyzerBuilder.builder(content).build();
         FrecuencyStrategy<Word> strategy = new WordFrecuencyStrategy(analyzer);
        strategy.addObserver(new FrecuencyObserver() {
@@ -171,12 +185,15 @@ public class MainViewController implements Initializable {
 
 
     private String getFileContent(){
+        log.debug("getting file content.");
         try {
             SimpleFileReader reader = new SimpleFileReader(this.jpFile);
             return reader.readContent();
         } catch (IOException e) {
-            updateLogArea(errorTextFormat(e.getMessage()));
-            throw new RuntimeException(e);
+            updateLogArea(errorTextFormat("File cannot be read. check logs."));
+            log.error("File could'nt be opened or read.", e);
+        }finally{
+            return "";
         }
     }
 
