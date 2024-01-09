@@ -186,15 +186,15 @@ public class MainViewController implements Initializable {
 
     private String getFileContent(){
         log.debug("getting file content.");
+        String content = "";
         try {
             SimpleFileReader reader = new SimpleFileReader(this.jpFile);
-            return reader.readContent();
+            content = reader.readContent();
         } catch (IOException e) {
             updateLogArea(errorTextFormat("File cannot be read. check logs."));
             log.error("File could'nt be opened or read.", e);
-        }finally{
-            return "";
         }
+        return content;
     }
 
 
