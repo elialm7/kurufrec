@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLabel" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="204.0" text="Kuru  Frec v1.0.0 ">
+      <Label fx:id="titleLabel" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="204.0" text="Kuru  Frec v1.1.0 ">
          <font>
             <Font name="Arial Black" size="17.0" />
          </font>
