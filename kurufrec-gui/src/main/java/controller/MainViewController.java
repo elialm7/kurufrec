@@ -31,11 +31,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static java.util.Comparator.*;
 
 public class MainViewController implements Initializable {
 
@@ -145,7 +146,9 @@ public class MainViewController implements Initializable {
             @Override
             protected List<Word> call() throws Exception {
                 Frecuencier<Word> frecuencier = prepareFrecuencier(getFileContent());
-                return frecuencier.doFrecuency();
+                List<Word> words = frecuencier.doFrecuency();
+                words.sort((o1, o2) -> Integer.compare(o2.getFrecuency(), o1.getFrecuency()));
+                return words;
             }
         };
         frecuencyTask.setOnSucceeded(event -> {

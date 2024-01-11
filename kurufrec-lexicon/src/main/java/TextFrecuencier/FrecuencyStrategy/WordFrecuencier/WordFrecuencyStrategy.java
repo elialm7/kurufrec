@@ -28,6 +28,7 @@ public class WordFrecuencyStrategy extends FrecuencyStrategy<Word> {
          for(Word currentWord: wordListreference){
              updateProgress(counter, maxsize);
              counter++;
+             if(currentWord.getContent().isEmpty())continue;
              if(frecuencies.containsKey(currentWord)){
                  int frecuency = frecuencies.get(currentWord);
                  frecuencies.put(currentWord, frecuency+1);
