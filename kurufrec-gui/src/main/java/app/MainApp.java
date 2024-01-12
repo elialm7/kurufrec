@@ -23,7 +23,7 @@ public class MainApp extends Application{
         loader.setController(controller);
         stage.setScene(new Scene(loader.load()));
         stage.setResizable(false);
-        stage.setTitle("Kuru frec v1.0.0");
+        stage.setTitle("Kuru frec");
         stage.show();
     }
 }

@@ -8,3 +8,5 @@
 **/target/**
 .*
 /logs
+
+/build-latest
