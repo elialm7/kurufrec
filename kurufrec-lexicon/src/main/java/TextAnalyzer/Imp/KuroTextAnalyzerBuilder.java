@@ -1,11 +1,9 @@
 package TextAnalyzer.Imp;
 
-import KanaConversion.KanaConversion;
 
 public class KuroTextAnalyzerBuilder {
 
     private String content;
-    private KanaConversion converter;
 
     private KuroTextAnalyzer.TextAnalyzerMode mode;
 
@@ -18,10 +16,6 @@ public class KuroTextAnalyzerBuilder {
     public static KuroTextAnalyzerBuilder builder(String input){
         return new KuroTextAnalyzerBuilder(input);
     }
-    public KuroTextAnalyzerBuilder withKanaConverter(KanaConversion converter){
-        this.converter = converter;
-        return this;
-    }
     public KuroTextAnalyzerBuilder withMode(KuroTextAnalyzer.TextAnalyzerMode mode){
         this.mode = mode;
         return this;
@@ -32,11 +26,7 @@ public class KuroTextAnalyzerBuilder {
         return this;
     }
     public KuroTextAnalyzer build(){
-        return new KuroTextAnalyzer(content, converter, mode, allowNakaguroSplit);
+        return new KuroTextAnalyzer(content,  mode, allowNakaguroSplit);
     }
-
-
-
-
 
 }
