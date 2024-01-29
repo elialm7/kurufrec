@@ -1,8 +1,7 @@
 package Utils.weights;
 
 
-//weights are used for sorting.
-//these are just arbitrary numbers. it's not based on anything...
+@Deprecated
 public class SpeechWeights {
     public static final int NOUN_WEIGH = 0;
     public static final int VERB_WEIGH = 1;
