@@ -1,5 +1,8 @@
 package Utils.kuromoji;
 
+
+
+@Deprecated
 public class KuroMojiSpeechParts {
 
     public static final String KURO_JP_NOUN = "名詞";
