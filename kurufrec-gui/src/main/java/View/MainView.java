@@ -1,11 +1,11 @@
 package View;
 
 import Interactor.MainViewInteractor;
+import UIStateModel.MainViewStateModel;
 import controller.MainViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Builder;
 
 import java.io.IOException;
 
@@ -13,21 +13,27 @@ public class MainView {
 
 
     private MainViewController controller;
-    private Stage st;
+    private MainViewStateModel stateModel;
+    private MainViewInteractor interactor;
+    private Stage mainStage;
 
     public MainView(Stage st){
-        this.st = st;
+        this.mainStage = st;
+        this.stateModel = new MainViewStateModel();
     }
-
-    public Scene getView() throws IOException {
-        controller = new MainViewController();
-        controller.setMainViewStage(st);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlViews/kurufrecmainviev.fxml"));
-        loader.setController(controller);
-        return new Scene(loader.load());
-    }
-
-    public MainViewController getController(){
-        return this.controller;
+    public void show(){
+        try {
+            interactor = new MainViewInteractor(stateModel);
+            controller = new MainViewController(stateModel, interactor, mainStage);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlViews/kurufrecmainviev.fxml"));
+            loader.setController(controller);
+            mainStage.setScene(new Scene(loader.load()));
+            mainStage.setTitle("KuruFrec");
+            mainStage.setResizable(false);
+            mainStage.show();
+        }catch (IOException e){
+            // todo: add logging.
+            e.printStackTrace();
+        }
     }
 }

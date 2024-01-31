@@ -1,22 +1,26 @@
 package controller;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import Interactor.MainViewInteractor;
+
+import UIStateModel.MainViewStateModel;
+import UIStateModel.MainViewStateModelListener;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.net.URL;
 import java.util.*;
-public class MainViewController implements Initializable {
-    private static Logger log = LogManager.getLogger(MainViewController.class);
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class MainViewController implements Initializable, MainViewStateModelListener {
     @FXML
     private TextArea LogArea;
     @FXML
@@ -30,45 +34,62 @@ public class MainViewController implements Initializable {
     @FXML
     private Label statelabel;
     private Stage mainViewStage;
-    public void setMainViewStage(Stage st) {
-        this.mainViewStage = st;
+    private MainViewInteractor interactor;
+    private MainViewStateModel statemodel;
+    public MainViewController(MainViewStateModel stateModel, MainViewInteractor interactor,Stage mainviewstage) {
+        this.mainViewStage = mainviewstage;
+        this.statemodel = stateModel;
+        this.interactor = interactor;
+        this.statemodel.addlistener(this);
     }
-    public Stage getMainViewStage() {
-        return mainViewStage;
+    private void openfile(){
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Choose a file.");
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
+        chooser.getExtensionFilters().add(extFilter);
+        File chosenfile = chooser.showOpenDialog(mainViewStage);
+        if(Objects.isNull(chosenfile)){
+            return;
+        }
+        statemodel.setLogAreatext("");
+        statemodel.setSelectedfile(chosenfile);
+        statemodel.appendlogAreaText("File selected: "+chosenfile.getName());
     }
-    public synchronized void appendtoLogArea(String newString){
-        Platform.runLater(()->this.LogArea.appendText(newString+"\n"));
+    private void startFrecuency(){
+        Task<Void> frecuencyBackgroundThread = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                interactor.executeFrecuency();
+                return null;
+            }
+        };
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(frecuencyBackgroundThread);
+        service.shutdown();
     }
-    public synchronized void updateStateLabel(String state){
-        Platform.runLater(()->this.statelabel.setText(state));
+    private void updateFilterUIstate(boolean t1){
+        this.statemodel.setOnFiltering(t1);
     }
-    public boolean getFilterCheckState(){
-        return this.filter.isSelected();
+    private void updateOpenafterFinishingUIstate(boolean t1){
+        this.statemodel.setOnOpeningAfter(t1);
     }
-    public boolean getOpenAfterFinishCheckState(){
-        return this.openfinishing.isSelected();
-    }
-    public void setOpenFileButtonAction(EventHandler<ActionEvent> action){
-        this.openFileButton.setOnAction(action);
-    }
-    public void setFrecuencyStartButtonAction(EventHandler<ActionEvent> action){
-        this.frecuencyStartButton.setOnAction(action);
-    }
-    public void disableFrecuencyStartButton(boolean bool){
-        this.frecuencyStartButton.setDisable(bool);
-    }
-    public void disableOpenfileButton(boolean bool){
-        this.openFileButton.setDisable(bool);
+    private void bindComponents(){
+        this.openFileButton.setOnAction(actionEvent -> openfile());
+        this.frecuencyStartButton.setOnAction(actionEvent -> startFrecuency());
+        this.filter.selectedProperty().addListener((observableValue, aBoolean, t1) -> updateFilterUIstate(t1));
+        this.openfinishing.selectedProperty().addListener((observablevalue, aboolean, t1)->{updateOpenafterFinishingUIstate(t1);});
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.LogArea.setEditable(false);
+        bindComponents();
     }
-    public void show(){
-        this.mainViewStage.setResizable(false);
-        this.mainViewStage.setTitle("KuruFrec");
-        this.mainViewStage.show();
+    @Override
+    public void onMainViewStateChanged(MainViewStateModel newState) {
+        updateUIState(newState);
     }
-
-
+    private void updateUIState(MainViewStateModel newState){
+        this.LogArea.setText(newState.getLogAreatext());
+        this.statelabel.setText(newState.getProgresslabel());
+    }
 }
