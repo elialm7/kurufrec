@@ -39,7 +39,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <CheckBox fx:id="openfinishing1" layoutX="525.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="231.0" text="Filter by Nouns, Adjectives, Verbs." />
+      <CheckBox fx:id="filter" layoutX="525.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="231.0" text="Filter by Nouns, Adjectives, Verbs." />
       <Separator layoutX="513.0" layoutY="115.0" prefHeight="4.0" prefWidth="237.0" />
    </children>
 </Pane>
