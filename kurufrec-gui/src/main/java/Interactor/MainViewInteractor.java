@@ -1,55 +1,21 @@
 package Interactor;
-import FileIO.in.imp.SimpleFileReader;
-import FileIO.out.imp.SimpleFileWriter;
+import TextAnalyzer.Imp.KuroTextAnalyzerBuilder;
+import TextAnalyzer.TextAnalyzer;
 import TextEntities.Word.Word;
-import controller.MainViewController;
-
-import java.awt.*;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Iterator;
-import java.util.List;
+import TextFrecuencier.Frecuencier.Frecuencier;
+import TextFrecuencier.Frecuencier.WordFrecuencier.WordFrecuencier;
+import UIStateModel.MainViewStateModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 // todo: finish the logic bussines for the application.
 public class MainViewInteractor {
+    private static Logger log = LogManager.getLogger(MainViewInteractor.class);
+    private MainViewStateModel mainViewStateModel;
 
-    private MainViewController mainViewController;
-    public void setController(MainViewController controller) {
-            this.mainViewController = controller;
+    public MainViewInteractor(MainViewStateModel stateModel) {
+            this.mainViewStateModel = stateModel;
     }
-
-    public void show() {
-        mainViewController.show();
-        bindActions();
-    }
-
-    private void bindActions(){
-            mainViewController.setOpenFileButtonAction(actionEvent -> openfile());
-            mainViewController.setFrecuencyStartButtonAction( actionEvent -> startFrecuency());
-    }
-
-    private void startFrecuency(){
-
-    }
-
-    private void openfile(){}
-
-    private String getFileContent(){
-      /*  log.debug("getting file content.");
-        String content = "";
-        try {
-            SimpleFileReader reader = new SimpleFileReader(this.jpFile);
-            content = reader.readContent();
-        } catch (IOException e) {
-            updateLogArea(errorTextFormat("File cannot be read. check logs."));
-            log.error("File could'nt be opened or read.", e);
-        }
-        return content;*/
-        return null;
-    }
-
-
-
     private void Openifselected(){
        /* log.debug("checking if the open after saving is selected.");
         if(this.openfinishing.isSelected()){
@@ -63,40 +29,16 @@ public class MainViewInteractor {
             }
         }*/
     }
-    private void savetoFile(List<Word> results) throws IOException {
-      /*  renamefile();
-        log.debug("Saving file");
-        SimpleFileWriter writer = new SimpleFileWriter(jpFile);
-        writer.writeContent(contentBuilder(results));
-        updateLogArea(infoTextFormat("file saved to: " + jpFile.getAbsolutePath()));
-        Openifselected();*/
+
+    public void executeFrecuency() {
+        TextAnalyzer<Word> analyzer = KuroTextAnalyzerBuilder.builder("").build();
+        WordFrecuencier frecuencier = new WordFrecuencier(analyzer);
+        frecuencier.addListener((event, origin) -> {
+            updateLogAreaStateModel(event);
+        });
+        frecuencier.execute();
     }
-
-    private void renamefile() {
-       /* log.debug("renaming file");
-        Path inputPath = jpFile.toPath();
-        Path parentDir = inputPath.getParent();
-        String originalFileName = inputPath.getFileName().toString();
-        int dotIndex = originalFileName.lastIndexOf(".");
-        String baseName = (dotIndex == -1) ? originalFileName : originalFileName.substring(0, dotIndex);
-        String extension = (dotIndex == -1) ? "" : originalFileName.substring(dotIndex);
-        String newFileName = baseName + "(" + "result" + ")" + extension;
-        Path renamedFilePath = parentDir.resolve(newFileName);
-        this.jpFile = renamedFilePath.toFile();*/
+    private void updateLogAreaStateModel(Frecuencier.Event event) {
+        mainViewStateModel.appendlogAreaText(event.toString());
     }
-    private String contentBuilder(List<Word> words) {
-       /* log.debug("Building content string");
-        StringBuilder builder = new StringBuilder();
-        Iterator<Word> it = words.iterator();
-        while (it.hasNext()) {
-            Word w = it.next();
-            //    builder.append(w.getContent() + ", " + w.getReading() + ", " + w.getRomaji() + ", " + w.getFrecuency());
-            builder.append("\n");
-        }
-
-        return builder.toString();*/
-        return null;
-
-    }
-
 }
