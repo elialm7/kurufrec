@@ -1,13 +1,13 @@
 package TextAnalyzer.Imp;
-import KanaConversion.Imp.KanaConversionKuru;
-import KanaConversion.KanaConversion;
 import TextAnalyzer.TextAnalyzer;
 import TextEntities.Word.Word;
-import Utils.kuromoji.KuroMojiFunctionsUtils;
+import TextEntities.Word.WordBuilder;
+import Utils.kuromoji.KuroSpeechParts;
 import com.atilika.kuromoji.TokenizerBase;
 import com.atilika.kuromoji.ipadic.Token;
 import com.atilika.kuromoji.ipadic.Tokenizer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,14 +17,12 @@ public class KuroTextAnalyzer implements TextAnalyzer<Word> {
         SEARCH, EXTENDED, NORMAL
     }
     private String inputText;
-    private KanaConversion converter;
     private TextAnalyzerMode mode;
 
     private boolean allowNakaguroSplit = false;
 
-    KuroTextAnalyzer(String inputText, KanaConversion converter, TextAnalyzerMode mode, boolean allowNakaguroSplit){
+    KuroTextAnalyzer(String inputText,  TextAnalyzerMode mode, boolean allowNakaguroSplit){
          this.inputText = inputText;
-         this.converter = converter;
          this.mode = mode;
          this.allowNakaguroSplit = allowNakaguroSplit;
     }
@@ -46,7 +44,6 @@ public class KuroTextAnalyzer implements TextAnalyzer<Word> {
                                                      .isSplitOnNakaguro(allowNakaguroSplit)
                                                      .build();
          }
-         //unreachable...
          return defaultTokenizer();
     }
 
@@ -58,17 +55,46 @@ public class KuroTextAnalyzer implements TextAnalyzer<Word> {
          }
     }
 
-    private KuroMojiFunctionsUtils getUtils(){
-        if(this.converter == null){
-            return KuroMojiFunctionsUtils.NewFunctionUtils();
-        }else {
-            return KuroMojiFunctionsUtils.NewFunctionUtils(converter);
+    private KuroSpeechParts parseSpeech(String speech){
+            if(speech.equalsIgnoreCase(KuroSpeechParts.NOUN.getJpWord())){
+                return KuroSpeechParts.NOUN;
+            }else if(speech.equalsIgnoreCase(KuroSpeechParts.ADJECTIVE.getJpWord())){
+                return KuroSpeechParts.ADJECTIVE;
+            }else if(speech.equalsIgnoreCase(KuroSpeechParts.VERB.getJpWord())){
+                return KuroSpeechParts.VERB;
+            }else if(speech.equalsIgnoreCase(KuroSpeechParts.ADVERB.getJpWord())){
+                return KuroSpeechParts.ADVERB;
+            }else if(speech.equalsIgnoreCase(KuroSpeechParts.PARTICLE.getJpWord())){
+                return KuroSpeechParts.PARTICLE;
+            }else {
+                return KuroSpeechParts.UNSUPPORTED;
+            }
+    }
+
+
+    private Word wordFromtoken(Token tk){
+        WordBuilder builder = new WordBuilder();
+        String surface = tk.getSurface();
+        KuroSpeechParts speechpart = parseSpeech(tk.getPartOfSpeechLevel1());
+        String baseform = tk.getBaseForm();
+        String reading = tk.getReading();
+        String pronunciation = tk.getPronunciation();
+        builder.surface(surface).partOfSpeech(speechpart).baseform(baseform).reading(reading).pronunciation(pronunciation);
+        return builder.build();
+    }
+
+    private List<Word> getWordsFromTokens(List<Token> tokens){
+        List<Word> words = new ArrayList<>();
+        for (Token token : tokens) {
+            words.add(wordFromtoken(token));
         }
+        return words;
+
     }
 
     @Override
     public List<Word> analyze() {
         Tokenizer tokenizer = getTokenizer();
-        return getUtils().fromTokens(tokenizer.tokenize(inputText));
+        return getWordsFromTokens(tokenizer.tokenize(inputText));
     }
 }

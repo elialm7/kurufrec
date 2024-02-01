@@ -10,6 +10,8 @@ import com.atilika.kuromoji.ipadic.Token;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
+
 public class KuroMojiFunctionsUtils {
 
     private KanaConversion conversionhelper;
@@ -27,17 +29,17 @@ public class KuroMojiFunctionsUtils {
         return new KuroMojiFunctionsUtils(defaultConverter);
     }
 
-    public  Word fromToken(Token tk){
+   /* public  Word fromToken(Token tk){
         WordBuilder builder = new WordBuilder();
         builder.withContent(tk.getSurface())
                 .withReading(tk.getReading())
                 .withType(tk.getPartOfSpeechLevel1())
                 .withPronunciation(tk.getPronunciation())
-                .withRomaji(getRomaji(tk.getReading()))
+              //  .withRomaji(getRomaji(tk.getReading()))
                 .withFrecuency(0)
                 .withWeight(getWeight(tk.getPartOfSpeechLevel1()));
         return builder.build();
-    }
+    }*/
 
     private String getRomaji(String input){
         if(conversionhelper == null){
@@ -49,7 +51,7 @@ public class KuroMojiFunctionsUtils {
 
     public List<Word> fromTokens(List<Token> tokens){
         List<Word> wordsfromtks = new ArrayList<>();
-        tokens.forEach(tk -> wordsfromtks.add(fromToken(tk)));
+       // tokens.forEach(tk -> wordsfromtks.add(fromToken(tk)));
         return wordsfromtks;
     }
     private int getWeight(String type){

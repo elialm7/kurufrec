@@ -1,110 +1,58 @@
 package TextEntities.Word;
 
-import Prototype.Prototype;
-
 import java.util.Objects;
 
-public class Word implements Prototype<Word> {
-    private String content;
+public class Word  {
+    private String surface;
+    private String partofspeech;
+    private String baseform;
     private String reading;
     private String pronunciation;
-    private String type;
     private int weight;
-    private int frecuency;
-    private String romaji;
 
-     Word(String content, String reading, String pronunciation, String type,String romaji,  int weight, int frecuency) {
-        this.content = content;
-        this.reading = reading;
-        this.pronunciation = pronunciation;
-        this.type = type;
-        this.weight = weight;
-        this.frecuency = frecuency;
-        this.romaji = romaji;
+    Word(String surface, String partofspeech, String baseform, String reading, String pronunciation, int weigth){
+         this.surface = surface;
+         this.partofspeech = partofspeech;
+         this.baseform = baseform;
+         this.reading = reading;
+         this.pronunciation = pronunciation;
+         this.weight = weigth;
     }
 
-    public Word(Word word){
-        this.content = word.getContent();
-        this.reading = word.getReading();
-        this.pronunciation =word.getPronunciation();
-        this.type = word.getType();
-        this.weight = word.getWeight();
-        this.frecuency = word.getFrecuency();
-        this.romaji = word.getRomaji();
+    public String getSurface() {
+        return surface;
     }
 
-    public String getRomaji() {
-        return romaji;
+    public String getPartofspeech() {
+        return partofspeech;
     }
 
-    public void setRomaji(String romaji) {
-        this.romaji = romaji;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public String getBaseform() {
+        return baseform;
     }
 
     public String getReading() {
         return reading;
     }
 
-    public void setReading(String reading) {
-        this.reading = reading;
-    }
-
     public String getPronunciation() {
         return pronunciation;
-    }
-
-    public void setPronunciation(String pronunciation) {
-        this.pronunciation = pronunciation;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getFrecuency() {
-        return frecuency;
-    }
-
-    public void setFrecuency(int frecuency) {
-        this.frecuency = frecuency;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Word word = (Word) o;
-        return Objects.equals(content, word.content);
+        return Objects.equals(surface, word.surface);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(content);
-    }
-
-    @Override
-    public Word clone() {
-        return new Word(this);
+        return Objects.hash(surface);
     }
 }
