@@ -2,7 +2,7 @@ package View;
 
 import Interactor.MainViewInteractor;
 import UIStateModel.MainViewStateModel;
-import controller.MainViewController;
+import Controller.MainViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -9,8 +9,10 @@ public class MainViewStateModel {
     private Boolean onOpeningAfter = false;
     private Boolean onFiltering = false;
     private String logAreatext = "";
+    private String lastAreaTextUpdate = "";
     private String progresslabel = "";
     private File selectedfile;
+    private boolean isFrecuencyRunning = false;
     private void notifyListeners(){
         if(listeners.isEmpty())return;
         listeners.forEach(listener -> listener.onMainViewStateChanged(this));
@@ -40,6 +42,7 @@ public class MainViewStateModel {
         notifyListeners();
     }
     public void appendlogAreaText(String append){
+        this.lastAreaTextUpdate = new String(append);
         StringBuilder builder = new StringBuilder(this.logAreatext);
         builder.append(append+"\n");
         this.logAreatext = builder.toString();
@@ -56,7 +59,19 @@ public class MainViewStateModel {
         this.selectedfile = file;
         notifyListeners();
     }
+    public String getlastAreaTextUpdate(){
+        return this.lastAreaTextUpdate;
+    }
     public File getSelectedfile(){
         return this.selectedfile;
+    }
+
+    public boolean isFrecuencyRunning(){
+        return isFrecuencyRunning;
+    }
+
+    public void setFrecuencyRunning(boolean running){
+        this.isFrecuencyRunning = running;
+        notifyListeners();
     }
 }

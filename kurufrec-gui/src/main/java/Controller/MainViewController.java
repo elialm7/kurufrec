@@ -1,9 +1,10 @@
-package controller;
+package Controller;
 
 import Interactor.MainViewInteractor;
 
 import UIStateModel.MainViewStateModel;
 import UIStateModel.MainViewStateModelListener;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,6 +58,7 @@ public class MainViewController implements Initializable, MainViewStateModelList
         statemodel.appendlogAreaText("File selected: "+chosenfile.getName());
     }
     private void startFrecuency(){
+        this.statemodel.setFrecuencyRunning(true);
         Task<Void> frecuencyBackgroundThread = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -86,10 +88,12 @@ public class MainViewController implements Initializable, MainViewStateModelList
     }
     @Override
     public void onMainViewStateChanged(MainViewStateModel newState) {
-        updateUIState(newState);
+        Platform.runLater(()-> updateUIState(newState));
+
     }
     private void updateUIState(MainViewStateModel newState){
-        this.LogArea.setText(newState.getLogAreatext());
-        this.statelabel.setText(newState.getProgresslabel());
+        LogArea.setText(newState.getLogAreatext());
+        statelabel.setText(newState.getProgresslabel());
+        frecuencyStartButton.setDisable(newState.isFrecuencyRunning());
     }
 }
