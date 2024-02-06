@@ -1,8 +1,9 @@
-package FileIO.out;
+package Model.FileIO.out;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public abstract class KuruWriter<T> {
 
@@ -13,5 +14,6 @@ public abstract class KuruWriter<T> {
     }
 
     public abstract void writeContent(T input) throws IOException;
+
 
 }

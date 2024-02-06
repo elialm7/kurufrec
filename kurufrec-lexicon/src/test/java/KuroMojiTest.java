@@ -4,6 +4,7 @@ import TextEntities.Word.Word;
 import TextFrecuencier.Frecuencier.WordFrecuencier.WordFrecuencier;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.Map;
 
 public class KuroMojiTest {

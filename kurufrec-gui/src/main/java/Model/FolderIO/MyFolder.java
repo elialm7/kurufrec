@@ -4,7 +4,7 @@
  * See file LICENSE.TXT  for full license details.
  */
 
-package FolderIO;
+package Model.FolderIO;
 
 
 public class MyFolder {

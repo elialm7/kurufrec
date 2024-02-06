@@ -8,5 +8,5 @@
 **/target/**
 .*
 /logs
-
+*.versionsBackup
 /build-latest

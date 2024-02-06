@@ -25,9 +25,9 @@ public class WordFrecuencier extends Frecuencier<Map<Word, Integer>> {
          setMin(0);
          setMax(words.size());
          emitEvent(Event.READY, this);
+         emitEvent(Event.EXECUTING, this);
          for(int counter = 0; counter < words.size(); counter++){
              setCurrent(counter);
-             emitEvent(Event.EXECUTING, this);
              Word currentWord = words.get(counter);
              if(frecuenciesmap.containsKey(currentWord)){
                  int frecuency = frecuenciesmap.get(currentWord);

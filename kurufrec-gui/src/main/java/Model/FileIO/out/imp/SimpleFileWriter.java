@@ -1,6 +1,6 @@
-package FileIO.out.imp;
+package Model.FileIO.out.imp;
 
-import FileIO.out.KuruWriter;
+import Model.FileIO.out.KuruWriter;
 
 import java.io.*;
 
@@ -16,4 +16,7 @@ public class SimpleFileWriter extends KuruWriter<String> {
         bufferedWriter.write(input);
         bufferedWriter.close();
     }
+
+
+
 }

@@ -5,6 +5,6 @@ import java.util.List;
 public interface TextAnalyzer<T> {
 
     List<T> analyze();
-
+    String[] getAllSpeechParts();
 
 }

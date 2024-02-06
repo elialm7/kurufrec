@@ -1,4 +1,4 @@
-package FileIO.in;
+package Model.FileIO.in;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
