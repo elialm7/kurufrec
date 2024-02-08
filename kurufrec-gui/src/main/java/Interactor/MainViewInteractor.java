@@ -14,12 +14,15 @@ import View.ViewState.MainView.ReportMainViewState;
 import javafx.util.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 
 // todo: finish the logic bussines for the application.
@@ -68,19 +71,50 @@ public class MainViewInteractor {
         return "";
     }
 
-    private String transformIntoAformattedString(Map<Word, Integer> result){
+    private String transformIntoAformattedString(Map<Word, Integer> result) {
+        /*
         StringBuilder record = new StringBuilder();
         record.append(formattedString("[SURFACE]", "[BASEFORM]", "[READING]", "[PRONUNCIATION]", "[PART OF SPEECH]", "[FRECUENCY]"));
         result.forEach((word, integer) -> {
-            if(!word.getSurface().isEmpty() || !word.getSurface().isBlank()) {
+            if (!word.getSurface().isEmpty() || !word.getSurface().isBlank()) {
                 record.append(formattedString(word.getSurface(), word.getBaseform(), word.getReading(), word.getPronunciation(), word.getPartofspeech(), integer.toString())).append("\n");
             }
         });
 
-        return record.toString();
+        return record.toString();*/
+        return generateHTML(result);
     }
-
-
+    private String generateHTML(Map<Word, Integer> result){
+        Document doc = Document.createShell("");
+        Element table = doc.createElement("table");
+        Element headerRow = doc.createElement("tr");
+        String[] headers = {"Surface", "Base Form", "Reading", "Pronunciation", "Part of Speech", "Frequency"};
+        for (String header : headers) {
+            Element th = doc.createElement("th");
+            th.text(header);
+            headerRow.appendChild(th);
+        }
+        table.appendChild(headerRow);
+        result.forEach((word, integer) -> {
+            if(!word.getSurface().isEmpty() || !word.getSurface().isBlank()) {
+                Element row = doc.createElement("tr");
+                row.appendChild(createTableCell(doc, word.getSurface()));
+                row.appendChild(createTableCell(doc, word.getBaseform()));
+                row.appendChild(createTableCell(doc, word.getReading()));
+                row.appendChild(createTableCell(doc, word.getPronunciation()));
+                row.appendChild(createTableCell(doc, word.getPartofspeech()));
+                row.appendChild(createTableCell(doc, "  "+integer.toString()));
+                table.appendChild(row);
+            }
+        });
+        doc.body().appendChild(table);
+        return doc.html();
+    }
+    private static Element createTableCell(Document doc, String text) {
+        Element cell = doc.createElement("td");
+        cell.text(text);
+        return cell;
+    }
 
     private String formattedString(String surface,String baseform, String reading, String pronunciation, String partspeech, String frecuency) {
         return String.format("%-15s%-15s%-15s%-15s%-15s%-15s", surface, baseform, reading, pronunciation, partspeech, frecuency);
@@ -185,7 +219,8 @@ public class MainViewInteractor {
         int indexdot = originalName.indexOf(".");
         int namelenght = originalName.length();
         String nameNoExt = originalName.substring(0, indexdot);
-        String ext = originalName.substring(indexdot, namelenght);
+        //String ext = originalName.substring(indexdot, namelenght);
+        String ext = ".html";
         String finalname = nameNoExt + "("+betweenparen+")"+ext;
         String completepath = parentdirectory+"\\"+finalname;
         return new File(completepath);

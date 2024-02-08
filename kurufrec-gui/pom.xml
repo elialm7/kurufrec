@@ -6,7 +6,7 @@
     <parent>
         <groupId>com</groupId>
         <artifactId>kurufrec</artifactId>
-        <version>1.0.0-alpha</version>
+        <version>1.0.0-proto-alpha</version>
     </parent>
 
     <groupId>org.example</groupId>
@@ -51,7 +51,12 @@
         <dependency>
             <groupId>org.elias</groupId>
             <artifactId>kurufrec-lexicon</artifactId>
-            <version>1.0.0-alpha</version>
+            <version>1.0.0-proto-alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.2</version> <!-- Use the latest version available -->
         </dependency>
 
 

@@ -6,7 +6,7 @@
 
     <groupId>com</groupId>
     <artifactId>kurufrec</artifactId>
-    <version>1.0.0-alpha</version>
+    <version>1.0.0-proto-alpha</version>
     <packaging>pom</packaging>
     <modules>
         <module>kurufrec-lexicon</module>
