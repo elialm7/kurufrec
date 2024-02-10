@@ -5,7 +5,9 @@ import TextFrecuencier.Frecuencier.WordFrecuencier.WordFrecuencier;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class KuroMojiTest {
 
@@ -23,6 +25,11 @@ public class KuroMojiTest {
         System.out.println("-------------------------RESULTS--------------------------------");
         result.forEach((word, integer) -> System.out.println(word.getSurface() + " ::: " +integer+" ::: "+word.getPartofspeech()));
 
+    }
+    @Test
+    public void shouldGetPartsSpeech(){
+        TextAnalyzer<Word> anaylzer = KuroTextAnalyzerBuilder.builder("").build();
+        Arrays.stream(anaylzer.getAllSpeechParts()).forEach(System.out::println);
     }
 
 

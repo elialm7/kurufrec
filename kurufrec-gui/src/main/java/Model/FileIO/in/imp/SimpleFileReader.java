@@ -4,6 +4,7 @@ import Model.FileIO.in.KuruReader;
 
 import java.io.*;
 
+@Deprecated
 public class SimpleFileReader extends KuruReader<String> {
 
     private File inputFile;
