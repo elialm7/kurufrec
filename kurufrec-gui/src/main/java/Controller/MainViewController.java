@@ -1,6 +1,7 @@
 package Controller;
 
 import Interactor.MainViewInteractor;
+import Interactor.MainViewInteractor;
 
 import View.ViewState.MainView.ActionsMainViewState;
 import View.ViewState.MainView.OptionsMainViewState;
@@ -18,9 +19,8 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 public class MainViewController implements Initializable {
-    @FXML
+    @@FXML
     private TextArea LogArea;
     @FXML
     private Button frecuencyStartButton;
@@ -134,5 +134,4 @@ public class MainViewController implements Initializable {
         this.LogArea.setEditable(false);
         this.progressbar.setVisible(false);
     }
-
 }
