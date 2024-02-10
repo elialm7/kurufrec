@@ -2,6 +2,8 @@ package Utils.kuromoji;
 
 public enum KuroSpeechParts {
 
+
+
     NOUN("名詞", 0),
     VERB("動詞", 1),
     ADJECTIVE("形容詞", 2),
@@ -11,7 +13,16 @@ public enum KuroSpeechParts {
 
     private final String jpversion;
     private final int weight;
-
+    public static int suuported = 5;
+    public static KuroSpeechParts[] getAllSupported(){
+        return new KuroSpeechParts[]{
+          KuroSpeechParts.NOUN,
+          KuroSpeechParts.VERB,
+          KuroSpeechParts.ADJECTIVE,
+          KuroSpeechParts.PARTICLE,
+          KuroSpeechParts.ADVERB
+        };
+    }
     KuroSpeechParts(String jpversion, int weight){
         this.jpversion = jpversion;
         this.weight = weight;
@@ -25,3 +36,4 @@ public enum KuroSpeechParts {
     }
 
 }
+

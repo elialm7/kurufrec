@@ -1,9 +1,10 @@
-package FileIO.in.imp;
+package Model.FileIO.in.imp;
 
-import FileIO.in.KuruReader;
+import Model.FileIO.in.KuruReader;
 
 import java.io.*;
 
+@Deprecated
 public class SimpleFileReader extends KuruReader<String> {
 
     private File inputFile;

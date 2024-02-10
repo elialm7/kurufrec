@@ -97,4 +97,15 @@ public class KuroTextAnalyzer implements TextAnalyzer<Word> {
         Tokenizer tokenizer = getTokenizer();
         return getWordsFromTokens(tokenizer.tokenize(inputText));
     }
+
+    @Override
+    public String[] getAllSpeechParts() {
+        return new String[]{
+                KuroSpeechParts.NOUN.toString(),
+                KuroSpeechParts.VERB.toString(),
+                KuroSpeechParts.ADJECTIVE.toString(),
+                KuroSpeechParts.PARTICLE.toString(),
+                KuroSpeechParts.ADVERB.toString()
+        };
+    }
 }

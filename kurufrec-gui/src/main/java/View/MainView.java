@@ -1,7 +1,9 @@
 package View;
 
 import Interactor.MainViewInteractor;
-import UIStateModel.MainViewStateModel;
+import View.ViewState.MainView.ActionsMainViewState;
+import View.ViewState.MainView.OptionsMainViewState;
+import View.ViewState.MainView.ReportMainViewState;
 import Controller.MainViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,18 +15,28 @@ public class MainView {
 
 
     private MainViewController controller;
-    private MainViewStateModel stateModel;
+    private OptionsMainViewState optionsState;
+    private ActionsMainViewState actionsState;
+    private ReportMainViewState reportState;
     private MainViewInteractor interactor;
     private Stage mainStage;
 
     public MainView(Stage st){
         this.mainStage = st;
-        this.stateModel = new MainViewStateModel();
+        this.actionsState = new ActionsMainViewState();
+        this.reportState = new ReportMainViewState();
+        this.optionsState = new OptionsMainViewState();
     }
     public void show(){
         try {
-            interactor = new MainViewInteractor(stateModel);
-            controller = new MainViewController(stateModel, interactor, mainStage);
+            interactor = new MainViewInteractor();
+            controller = new MainViewController(interactor, mainStage);
+            controller.bindActionsState(actionsState);
+            controller.bindOptionsState(optionsState);
+            controller.bindReportState(reportState);
+            interactor.bindActionsState(actionsState);
+            interactor.bindOptionsState(optionsState);
+            interactor.bindReportState(reportState);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlViews/kurufrecmainviev.fxml"));
             loader.setController(controller);
             mainStage.setScene(new Scene(loader.load()));
