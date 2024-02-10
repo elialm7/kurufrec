@@ -179,7 +179,7 @@ public class MainViewInteractor {
 
         this.wordfilteredmap = new ArrayList<>();
          Arrays.stream(this.textAnalyzer.getAllSpeechParts()).forEach(type -> {
-             System.out.println(type);
+
              Map<Word, Integer> newMap = sortDescendingbyValue(separatebytype(type, frecuencymap));
              Pair<String, Map<Word, Integer>> pair = new Pair<>(type, newMap);
              wordfilteredmap.add(pair);
