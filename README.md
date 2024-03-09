@@ -1,3 +1,3 @@
 # Kuru Frec
 
-status: development cancelled.
+status: development stopped.
