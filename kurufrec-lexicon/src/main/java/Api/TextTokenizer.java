@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface TextTokenizer<T>  {
 
-    List<T> analyze();
-
+    List<T> analyze(String text);
 
 }

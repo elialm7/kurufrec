@@ -1,6 +1,5 @@
-package KuromojiUsageTest;
+package ExploratoryTests;
 
-import com.atilika.kuromoji.TokenizerBase;
 import com.atilika.kuromoji.ipadic.Token;
 import com.atilika.kuromoji.ipadic.Tokenizer;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class IpadicKuromojiUsageTest {
+public class ExploringIpadicKuromojiTest {
 
     String textExample = "金色の月に触れてみたいや 嫌, 金色の月に触れてみたいや 嫌, 金色, lol";
     static Tokenizer tokenizer;
