@@ -2,9 +2,8 @@ package Utils.kuromoji;
 
 
 
-@Deprecated
 public class KuroMojiSpeechParts {
-
+/*
     public static final String KURO_JP_NOUN = "名詞";
     public static final String KURO_JP_VERB = "動詞";
     public static final String KURO_JP_PARTICLE = "助詞";
@@ -36,5 +35,5 @@ public class KuroMojiSpeechParts {
     public static final String CONJUNCTION_ENGLISH = "Conjunction";
 
 
-
+*/
 }

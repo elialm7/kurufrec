@@ -12,6 +12,7 @@
         <module>kurufrec-lexicon</module>
 
         <module>kurufrec-gui</module>
+        <module>kurufrec-core</module>
     </modules>
     <properties>
         <maven.compiler.source>1.17</maven.compiler.source>

@@ -1,20 +1,10 @@
 package Utils.kuromoji;
 
-import KanaConversion.Imp.KanaConversionKuruFactory;
-import KanaConversion.KanaConversion;
-import TextEntities.Word.Word;
-import TextEntities.Word.WordBuilder;
-import Utils.weights.SpeechWeights;
-import com.atilika.kuromoji.ipadic.Token;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Deprecated
 
 public class KuroMojiFunctionsUtils {
 
-    private KanaConversion conversionhelper;
+   /* private KanaConversion conversionhelper;
 
     private KuroMojiFunctionsUtils(KanaConversion conversionhelper){
         this.conversionhelper = conversionhelper;
@@ -39,7 +29,7 @@ public class KuroMojiFunctionsUtils {
                 .withFrecuency(0)
                 .withWeight(getWeight(tk.getPartOfSpeechLevel1()));
         return builder.build();
-    }*/
+    }
 
     private String getRomaji(String input){
         if(conversionhelper == null){
@@ -94,5 +84,5 @@ public class KuroMojiFunctionsUtils {
     }
 
 
-
+*/
 }
