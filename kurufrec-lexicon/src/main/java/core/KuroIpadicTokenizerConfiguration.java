@@ -18,7 +18,7 @@ public record KuroIpadicTokenizerConfiguration(Boolean allowNakaguro,
     public static KuroIpadicTokenizerConfiguration Default(){
         return new KuroIpadicTokenizerConfiguration(
                 KuroIpadicTokenizerConfiguration.DEFAULT_ALLOW_NAKAGURO_SPLIT,
-                KuroIpadicTokenizerConfiguration.DEFAULT_MODE,
+                KuroIpadicTokenizerConfiguration.DEFAULT_MODE, 
                 KuroIpadicTokenizerConfiguration.DEFAULT_KANJI_PENALTY_LENGTH_TRESHOLD,
                 KuroIpadicTokenizerConfiguration.DEFAULT_KANJI_PENALTY,
                 KuroIpadicTokenizerConfiguration.DEFAULT_OTHER_PENALTY_LENGTH_THRESHOLD,
