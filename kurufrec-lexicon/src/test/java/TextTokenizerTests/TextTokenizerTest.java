@@ -28,15 +28,14 @@ public class TextTokenizerTest {
     }
     @Test
     public void should_return_an_not_empty_list_if_string_not_empty(){
+        /*
+        * i think that i don't need to write tests for these, since im just abstracting the imp of libraries
+        * i pretend to use others libraries for tokenization later, so i 'need this abstraction' as simple as possible.
+        * maybe ill learn how to make one myself, but for now i don't need to.
+        * */
         TextTokenizer<KuroIpadicToken> tokenizer = new KuroIpadicTokenizer(KuroIpadicTokenizerConfiguration.Default());
         List<KuroIpadicToken> tokens = tokenizer.tokenize(textExample);
         assertFalse(tokens.isEmpty(), "it must return a list which is not empty");
-    }
-
-    @Test
-    public void should_tokenize_into_ipadic_tokens(){
-        // todo: write the test for this
-
     }
 
 

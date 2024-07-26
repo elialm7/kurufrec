@@ -33,8 +33,23 @@ public class KuroIpadicTokenizer implements TextTokenizer<KuroIpadicToken> {
         return tokenizer;
     }
     private KuroIpadicToken kuroIpadicTokenAdapterFn(Token tk){
-        // todo: finish this unimplemented adapter
-        return KuroIpadicToken.UndefinedToken();
+        var surface = tk.getSurface();
+        var speechpart = tk.getPartOfSpeechLevel1();
+        var baseform = tk.getBaseForm();
+        var conjugation_form = tk.getConjugationForm();
+        var conjugation_type = tk.getConjugationType();
+        var reading = tk.getReading();
+        var pronunciation = tk.getPronunciation();
+
+        return new KuroIpadicToken(
+                surface,
+                speechpart,
+                baseform,
+                conjugation_form,
+                conjugation_type,
+                reading,
+                pronunciation
+        );
     }
 
     @Override
