@@ -28,6 +28,8 @@ import java.util.function.BiConsumer;
 
 // todo: finish the logic bussines for the application.
 public class MainViewInteractor {
+
+    /*
      private static Logger log = LogManager.getLogger(MainViewInteractor.class);
     private Map<Word, Integer> frecuencymap;
     private List<Pair<String, Map<Word, Integer>>> wordfilteredmap;
@@ -242,5 +244,5 @@ public class MainViewInteractor {
 
     private void notifyFileOpening(String filename){
         ReportState.appendtoReportText("Opening "+filename+"...");
-    }
+    }*/
 }

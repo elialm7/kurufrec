@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-public class MainViewController implements Initializable {
+public class MainViewController {
     @FXML
     private TextArea LogArea;
     @FXML
@@ -34,7 +34,7 @@ public class MainViewController implements Initializable {
     private Label statelabel;
     @FXML
     private ProgressBar progressbar;
-    private Stage mainViewStage;
+   /** private Stage mainViewStage;
     private MainViewInteractor interactor;
 
     private OptionsMainViewState OptionState;
@@ -133,5 +133,5 @@ public class MainViewController implements Initializable {
     private void setInitialState(){
         this.LogArea.setEditable(false);
         this.progressbar.setVisible(false);
-    }
+    }*/
 }
