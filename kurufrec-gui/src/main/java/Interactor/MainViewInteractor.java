@@ -3,11 +3,6 @@ import Model.FileIO.in.imp.SimpleFileReader;
 import Model.FileIO.out.imp.SimpleFileWriter;
 import Interactor.FrecuencyListener.FrecuencierOperationListener;
 
-import TextAnalyzer.Imp.KuroTextAnalyzerBuilder;
-import TextAnalyzer.TextAnalyzer;
-import TextEntities.Word.Word;
-import TextFrecuencier.Frecuencier.Frecuencier;
-import TextFrecuencier.Frecuencier.WordFrecuencier.WordFrecuencier;
 import View.ViewState.MainView.ActionsMainViewState;
 import View.ViewState.MainView.OptionsMainViewState;
 import View.ViewState.MainView.ReportMainViewState;
@@ -16,7 +11,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
