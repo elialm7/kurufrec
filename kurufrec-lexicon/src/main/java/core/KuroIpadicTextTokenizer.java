@@ -7,10 +7,10 @@ import com.atilika.kuromoji.ipadic.Tokenizer;
 
 import java.util.List;
 
-public class KuroIpadicTokenizer implements TextTokenizer<KuroIpadicToken> {
+public class KuroIpadicTextTokenizer implements TextTokenizer<KuroIpadicToken> {
 
     private KuroIpadicTokenizerConfiguration configuration;
-    public KuroIpadicTokenizer(KuroIpadicTokenizerConfiguration kuroIpadicTokenizerConfiguration) {
+    public KuroIpadicTextTokenizer(KuroIpadicTokenizerConfiguration kuroIpadicTokenizerConfiguration) {
         this.configuration = kuroIpadicTokenizerConfiguration;
     }
 
