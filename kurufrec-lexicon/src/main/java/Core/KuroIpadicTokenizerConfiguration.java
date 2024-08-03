@@ -1,4 +1,4 @@
-package core;
+package Core;
 
 public record KuroIpadicTokenizerConfiguration(Boolean allowNakaguro,
                                                KuroIpadicTextTokenizerMode mode,

@@ -2,11 +2,10 @@ package TextFrecuencierTests;
 
 import Api.TextFrecuencier;
 import Api.TextTokenizer;
-import core.*;
+import Core.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class KuroIpadicTextFrecuencierTests {

@@ -9,8 +9,8 @@ public class MainApp extends Application{
     }
     @Override
     public void start(Stage stage) throws Exception {
-        MainView mainView = new MainView(stage);
-        mainView.show();
+      /*  MainView mainView = new MainView(stage);
+        mainView.show();*/
     }
 
 }

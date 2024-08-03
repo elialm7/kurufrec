@@ -1,4 +1,4 @@
-package core;
+package Core;
 
 import Api.TextTokenizer;
 import com.atilika.kuromoji.TokenizerBase;

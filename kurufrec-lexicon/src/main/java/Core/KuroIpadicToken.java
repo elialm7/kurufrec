@@ -1,6 +1,4 @@
-package core;
-
-import java.util.Objects;
+package Core;
 
 public record KuroIpadicToken(String surface,
                               String speechpart,

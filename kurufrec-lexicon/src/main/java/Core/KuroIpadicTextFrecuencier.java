@@ -1,4 +1,4 @@
-package core;
+package Core;
 import Api.TextFrecuencier;
 import java.util.*;
 

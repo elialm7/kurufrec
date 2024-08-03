@@ -1,13 +1,9 @@
 package Interactor.FrecuencyListener;
 
-import TextEntities.Word.Word;
-import TextFrecuencier.Frecuencier.Frecuencier;
-import TextFrecuencier.Frecuencier.WordFrecuencier.WordFrecuencier;
-import TextFrecuencier.FrecuencierListener.FrecuencierListener;
-import View.ViewState.MainView.ReportMainViewState;
 
-public class FrecuencierOperationListener implements FrecuencierListener {
+public class FrecuencierOperationListener{
 
+    /*
     private ReportMainViewState ReportState;
     public FrecuencierOperationListener(ReportMainViewState report){
         this.ReportState= report;
@@ -29,4 +25,6 @@ public class FrecuencierOperationListener implements FrecuencierListener {
         }
 
     }
+    */
+
 }

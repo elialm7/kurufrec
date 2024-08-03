@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class MainView {
 
+    /*
 
     private MainViewController controller;
     private OptionsMainViewState optionsState;
@@ -48,4 +49,6 @@ public class MainView {
             e.printStackTrace();
         }
     }
+    */
+
 }

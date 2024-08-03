@@ -1,9 +1,9 @@
 package TextTokenizerTests;
 
 import Api.TextTokenizer;
-import core.KuroIpadicToken;
-import core.KuroIpadicTextTokenizer;
-import core.KuroIpadicTokenizerConfiguration;
+import Core.KuroIpadicToken;
+import Core.KuroIpadicTextTokenizer;
+import Core.KuroIpadicTokenizerConfiguration;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
