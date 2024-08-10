@@ -17,4 +17,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.elias</groupId>
+            <artifactId>kurufrec-lexicon</artifactId>
+            <version>1.0.0-proto-alpha</version>
+        </dependency>
+    </dependencies>
+
 </project>
