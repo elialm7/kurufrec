@@ -1,4 +1,4 @@
-package Core;
+package KuroMoji;
 
 import Api.TextTokenizer;
 import com.atilika.kuromoji.TokenizerBase;
@@ -7,10 +7,11 @@ import com.atilika.kuromoji.ipadic.Tokenizer;
 
 import java.util.List;
 
-public class KuroIpadicTextTokenizer implements TextTokenizer<KuroIpadicToken> {
 
-    private KuroIpadicTokenizerConfiguration configuration;
-    public KuroIpadicTextTokenizer(KuroIpadicTokenizerConfiguration kuroIpadicTokenizerConfiguration) {
+public class IpadicTokenizer implements TextTokenizer<IpadicToken> {
+
+    private IpadicTokenizerConfig configuration;
+    public IpadicTokenizer(IpadicTokenizerConfig kuroIpadicTokenizerConfiguration) {
         this.configuration = kuroIpadicTokenizerConfiguration;
     }
 
@@ -32,7 +33,7 @@ public class KuroIpadicTextTokenizer implements TextTokenizer<KuroIpadicToken> {
         };
         return tokenizer;
     }
-    private KuroIpadicToken kuroIpadicTokenAdapterFn(Token tk){
+    private IpadicToken kuroIpadicTokenAdapterFn(Token tk){
         var surface = tk.getSurface();
         var speechpart = tk.getPartOfSpeechLevel1();
         var baseform = tk.getBaseForm();
@@ -41,7 +42,7 @@ public class KuroIpadicTextTokenizer implements TextTokenizer<KuroIpadicToken> {
         var reading = tk.getReading();
         var pronunciation = tk.getPronunciation();
 
-        return new KuroIpadicToken(
+        return new IpadicToken(
                 surface,
                 speechpart,
                 baseform,
@@ -53,7 +54,7 @@ public class KuroIpadicTextTokenizer implements TextTokenizer<KuroIpadicToken> {
     }
 
     @Override
-    public List<KuroIpadicToken> tokenize(String text) {
+    public List<IpadicToken> tokenize(String text) {
         if(text.isEmpty() || text.isBlank()){
             return List.of();
         }

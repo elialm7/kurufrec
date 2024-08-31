@@ -1,6 +1,6 @@
-package Core;
+package KuroMoji;
 
-public record KuroIpadicToken(String surface,
+public record IpadicToken(String surface,
                               String speechpart,
                               String baseform,
                               String conjugationForm,
@@ -9,8 +9,8 @@ public record KuroIpadicToken(String surface,
                               String pronunciation) {
 
 
-    public static KuroIpadicToken UndefinedToken(){
-        return new KuroIpadicToken(
+    public static IpadicToken UndefinedToken(){
+        return new IpadicToken(
                 "UNDEFINED",
                 "UNDEFINED",
                 "UNDEFINED",

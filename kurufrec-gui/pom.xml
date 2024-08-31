@@ -18,36 +18,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-media</artifactId>
-            <version>17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-web</artifactId>
-            <version>17</version>
-        </dependency>
+     
+        
         <dependency>
             <groupId>org.elias</groupId>
             <artifactId>kurufrec-lexicon</artifactId>
@@ -58,8 +30,6 @@
             <artifactId>jsoup</artifactId>
             <version>1.14.2</version> <!-- Use the latest version available -->
         </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/de.vandermeer/asciitable -->
         <dependency>
             <groupId>de.vandermeer</groupId>
