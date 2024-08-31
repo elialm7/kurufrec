@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>kurufrec-lexicon</module>
-        <module>kurufrec-gui</module>
         <module>kurufrec-core</module>
+        <module>kurufrec-api</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
